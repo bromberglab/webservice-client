@@ -49,6 +49,20 @@ export default {
           Events.$emit("stop-loading");
         });
       });
+    },
+    deleteImage(image) {
+      this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
+        value && this.deleteImageConfirmed(image);
+      });
+    },
+    deleteImageConfirmed(image) {
+      Events.$emit("start-loading");
+      const name = image.name;
+      Api.delete("delete_image", { name }).then(() => {
+        this.loadImages(() => {
+          Events.$emit("stop-loading");
+        });
+      });
     }
   },
   data() {
