@@ -4,6 +4,7 @@ import Notifications from "../Notifications/comp.vue";
 import NotificationPopup from "../NotificationPopup/comp.vue";
 import AdminFrame from "../AdminFrame/comp.vue";
 import DocsFrame from "../DocsFrame/comp.vue";
+import Images from "../Images/comp.vue";
 import VueRouter from "vue-router";
 import Events from "src/services/events";
 import Api from "src/services/api";
@@ -15,6 +16,7 @@ import { Slide } from "vue-burger-menu";
 let routes = [
   [GraphEditor, "Editor"],
   [UploadPage, "Upload"],
+  [Images, "Images"],
   [Notifications, "Notifications"],
   [AdminFrame, "Admin"],
   [DocsFrame, "Docs"]
@@ -96,9 +98,9 @@ export default {
       this.dragActive = false;
     });
     if (!Auth.authenticated) {
-      this.routes.splice(0, 4);
+      this.routes.splice(0, 5);
     } else if (!Auth.staff) {
-      this.routes.splice(3, 1);
+      this.routes.splice(4, 1);
     }
   },
   mounted() {

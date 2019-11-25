@@ -1,0 +1,57 @@
+<b-container class="host">
+  <b-table-simple>
+    <b-tbody>
+      <b-tr v-for="i in images" class="image">
+        <b-td v-b-tooltip.hover :title="i.name">{{ i.short_name }}</b-td>
+        <b-td class="badges">
+          <b-badge variant="secondary">
+            <font-awesome-icon icon="tag" />
+            {{ i.imported_tag }}
+          </b-badge>
+          <b-badge variant="secondary">
+            <font-awesome-icon icon="hashtag" />
+            {{ i.sha || '–' }}
+          </b-badge>
+          <b-badge variant="secondary">
+            <font-awesome-icon icon="sign-in-alt" />
+            {{ i.inputs_display || '–' }}
+          </b-badge>
+          <b-badge variant="secondary">
+            <font-awesome-icon icon="sign-out-alt" />
+            {{ i.outputs_display || '–' }}
+          </b-badge>
+          <b-badge variant="secondary">
+            <font-awesome-icon icon="clock" />
+            <timeago :datetime="i.updated_at"></timeago>
+          </b-badge>
+        </b-td>
+      </b-tr>
+      <b-tr>
+        <b-td> </b-td>
+        <b-td class="text-left">
+          <b-button variant="success" @click="promptImport">
+            <font-awesome-icon icon="plus"> </font-awesome-icon>
+            Import
+          </b-button>
+        </b-td>
+      </b-tr>
+    </b-tbody>
+  </b-table-simple>
+  <b-modal id="import-image-modal" title="Import" @ok="doImport">
+    <b-input-group class="name">
+      <b-form-input
+        type="text"
+        placeholder="(required)"
+        required
+        v-model="importName"
+      ></b-form-input>
+    </b-input-group>
+    <b-input-group prepend=":" class="tag">
+      <b-form-input
+        type="text"
+        placeholder="latest"
+        v-model="importTag"
+      ></b-form-input>
+    </b-input-group>
+  </b-modal>
+</b-container>

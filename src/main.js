@@ -10,6 +10,7 @@ import VJsoneditor from "v-jsoneditor";
 import VueSSE from "vue-sse";
 import ServerEvents from "src/services/server-events";
 import Notifications from "src/services/notifications";
+import VueTimeago from "vue-timeago";
 
 import "./custom.scss";
 
@@ -19,6 +20,9 @@ Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.use(VJsoneditor);
 Vue.use(VueSSE);
+Vue.use(VueTimeago, {
+  locale: "en"
+});
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 library.add(fas);

@@ -1,0 +1,43 @@
+.host {
+  padding: 4em 0;
+}
+
+.badge {
+  margin: 0.2em;
+}
+.badges {
+  font-size: 1.1em;
+  svg {
+    margin-right: 0.4em;
+  }
+}
+
+table {
+  .image {
+    td {
+      text-align: left;
+      &:first-child {
+        text-align: right;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.input-group.name {
+  display: inline-flex;
+  width: 70%;
+  input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-align: right;
+  }
+}
+.input-group.tag {
+  display: inline-flex;
+  width: 30%;
+  .input-group-text {
+    border-radius: 0;
+    border-left-width: 0;
+  }
+}
