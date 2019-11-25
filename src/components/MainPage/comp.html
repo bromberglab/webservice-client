@@ -1,7 +1,7 @@
 <div id="app" class="full-height" @dragenter="dragOn" @dragleave="dragOff">
   <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
   <div class="slide-overlay" :class="{sidebarOpen}"></div>
-  <router-view id="page-wrap"></router-view>
+  <router-view id="page-wrap" class="text-center"></router-view>
   <Slide
     :noOverlay="true"
     @openMenu="sidebarOpen = true"
