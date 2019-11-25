@@ -18,6 +18,20 @@
         {{ r.title }}
       </a>
     </router-link>
+    <a
+      class="nav-link"
+      :href="serverUri + '/accounts/login?next=/'"
+      v-if="!Auth.authenticated"
+    >
+      Login
+    </a>
+    <a
+      class="nav-link"
+      :href="serverUri + '/accounts/logout'"
+      v-if="Auth.authenticated"
+    >
+      Logout
+    </a>
   </Slide>
   <div class="cookie-info" :class="{ 'hide-below': !showCookieInfo }">
     <div class="cookie-info-wrap">
