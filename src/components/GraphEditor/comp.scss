@@ -49,8 +49,8 @@
     position: absolute;
     display: flex;
     text-align: right;
-    top: 5px;
-    right: 5px;
+    top: 15px;
+    right: 20px;
     width: 50%;
     max-width: 450px;
     * {
@@ -73,11 +73,13 @@
       top: 0;
       left: auto;
       max-width: 20em;
+      margin-right: 20px;
     }
+    padding-bottom: 10px;
 
     .btn:hover {
       background-color: initial;
-      color: var(--primary);
+      color: $primary;
     }
     .btn {
       visibility: hidden;
