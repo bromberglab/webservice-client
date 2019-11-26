@@ -1,6 +1,16 @@
 <b-container class="host">
   <b-table-simple>
     <b-tbody>
+      <b-tr v-for="i in imagesLoading" class="image">
+        <b-td v-b-tooltip.hover :title="i.name">{{ i.name }}</b-td>
+        <b-td>
+          <vue-spinner
+            color="black"
+            size="10px"
+            class="text-left"
+          ></vue-spinner>
+        </b-td>
+      </b-tr>
       <b-tr v-for="i in images" class="image">
         <b-td v-b-tooltip.hover :title="i.name">{{ i.short_name }}</b-td>
         <b-td class="badges">

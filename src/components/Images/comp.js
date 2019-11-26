@@ -1,11 +1,15 @@
 import Api from "src/services/api";
 import Events from "src/services/events";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
 export default {
   mounted() {
     Events.$emit("start-loading");
     this.loadImages(() => {
       Events.$emit("stop-loading");
+    });
+    Events.$on("server-event/image-imported", () => {
+      this.loadImages();
     });
   },
   methods: {
@@ -33,6 +37,7 @@ export default {
 
           return i;
         });
+        this.imagesLoading = [];
         then && then();
       });
     },
@@ -40,14 +45,13 @@ export default {
       this.$bvModal.show("import-image-modal");
     },
     doImport() {
-      Events.$emit("start-loading");
+      const name = this.importName;
+
+      this.imagesLoading.push({ name });
+
       Api.post("import_image", {
-        name: this.importName,
+        name,
         tag: this.importTag || false
-      }).then(() => {
-        this.loadImages(() => {
-          Events.$emit("stop-loading");
-        });
       });
     },
     deleteImage(image) {
@@ -68,8 +72,12 @@ export default {
   data() {
     return {
       images: [],
+      imagesLoading: [],
       importName: null,
       importTag: null
     };
+  },
+  components: {
+    "vue-spinner": PulseLoader
   }
 };
