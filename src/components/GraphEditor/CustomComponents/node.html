@@ -23,6 +23,7 @@
       v-socket:output="output"
       type="output"
       :socket="output.socket"
+      :used="output.connections.length > 0"
     ></Socket>
   </div>
   <!-- Controls-->
@@ -34,7 +35,12 @@
   ></div>
   <!-- Inputs-->
   <div class="input" v-for="(input, i) in inputs()" :key="node.id + '/i/' + i">
-    <Socket v-socket:input="input" type="input" :socket="input.socket"></Socket>
+    <Socket
+      v-socket:input="input"
+      type="input"
+      :socket="input.socket"
+      :used="input.connections.length > 0"
+    ></Socket>
     <div class="input-title" v-show="!input.showControl()" v-if="!isDataset">
       {{ input.name }}
     </div>

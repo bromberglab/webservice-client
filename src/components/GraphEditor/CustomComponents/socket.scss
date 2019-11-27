@@ -12,6 +12,8 @@
   background: $socket-color;
   z-index: 2;
   box-sizing: border-box;
+  position: relative;
+
   &:hover {
     background: darken($socket-color, 6%);
   }
@@ -34,6 +36,21 @@
     background-color: $tertiary-socket-color;
     &:hover {
       background: darken($tertiary-socket-color, 6%);
+    }
+  }
+
+  &.used {
+    &::after {
+      width: $socket-size / 3;
+      height: $socket-size / 3;
+      background-color: $white;
+      content: "";
+      z-index: 2;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 100%;
     }
   }
 }

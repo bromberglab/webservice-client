@@ -1,5 +1,5 @@
 <div
   class="socket"
-  :class="[type, socket.name] | kebab"
+  :class="[type, used ? 'used' : '']"
   :title="socket.name"
 ></div>
