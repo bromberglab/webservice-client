@@ -54,6 +54,17 @@ export default {
         tag: this.importTag || false
       });
     },
+    updateImage(image) {
+      const i = this.images.findIndex(i => i.name == image.name);
+      image.updating = true;
+      this.$set(this.images, i, image);
+
+      const name = image.name;
+      Api.post("update_image", { name });
+    },
+    editImage(_) {
+      this.$bvModal.msgBoxConfirm("Not implemented yet");
+    },
     deleteImage(image) {
       this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
         value && this.deleteImageConfirmed(image);

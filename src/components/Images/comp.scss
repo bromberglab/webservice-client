@@ -22,6 +22,12 @@ table {
       }
     }
   }
+  .buttons {
+    white-space: nowrap;
+    & > *:not(:first-child) {
+      margin-left: 0.2em;
+    }
+  }
 }
 
 .input-group.name {

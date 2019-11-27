@@ -1,7 +1,7 @@
 <b-container class="host">
   <b-table-simple>
     <b-tbody>
-      <b-tr v-for="i in imagesLoading" class="image">
+      <b-tr v-for="i in imagesLoading" :key="i.name" class="image">
         <b-td v-b-tooltip.hover :title="i.name">{{ i.name }}</b-td>
         <b-td>
           <vue-spinner
@@ -11,7 +11,7 @@
           ></vue-spinner>
         </b-td>
       </b-tr>
-      <b-tr v-for="i in images" class="image">
+      <b-tr v-for="i in images" :key="i.name" class="image">
         <b-td v-b-tooltip.hover :title="i.name">{{ i.short_name }}</b-td>
         <b-td class="badges">
           <b-badge variant="secondary">
@@ -35,8 +35,30 @@
             <timeago :datetime="i.updated_at"></timeago>
           </b-badge>
         </b-td>
-        <b-td>
-          <b-button variant="danger" @click="deleteImage(i)">
+        <b-td class="buttons">
+          <b-button
+            variant="primary"
+            @click="updateImage(i)"
+            v-b-tooltip.hover
+            title="Update"
+          >
+            <font-awesome-icon icon="sync" :spin="i.updating">
+            </font-awesome-icon>
+          </b-button>
+          <b-button
+            variant="success"
+            @click="editImage(i)"
+            v-b-tooltip.hover
+            title="Change"
+          >
+            <font-awesome-icon icon="pen"> </font-awesome-icon>
+          </b-button>
+          <b-button
+            variant="danger"
+            @click="deleteImage(i)"
+            v-b-tooltip.hover
+            title="Delete"
+          >
             <font-awesome-icon icon="trash-alt"> </font-awesome-icon>
           </b-button>
         </b-td>
