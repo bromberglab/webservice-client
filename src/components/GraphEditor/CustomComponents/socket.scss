@@ -30,4 +30,10 @@
       background: darken($secondary-socket-color, 6%);
     }
   }
+  .node.tertiary & {
+    background-color: $tertiary-socket-color;
+    &:hover {
+      background: darken($tertiary-socket-color, 6%);
+    }
+  }
 }

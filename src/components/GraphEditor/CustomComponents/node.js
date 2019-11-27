@@ -36,7 +36,7 @@ export default {
       Events.$on("run-all", () => {
         this.scheduled = true;
       });
-      if (this.isDataset && !this.isDocked) {
+      if (this.isDataset) {
         this.dataNode = this.node;
       }
     } else {
@@ -87,6 +87,10 @@ export default {
       return Array(this.$el.parentElement.classList).find(v => v == "dock-item")
         ? true
         : false;
+    },
+    tier() {
+      if (this.isDataset) return 2;
+      return this.node.data.image.labels.tier || 1;
     }
   }
 };

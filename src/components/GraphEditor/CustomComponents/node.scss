@@ -27,6 +27,15 @@
       background: lighten($secondary-node-color, 3%);
     }
   }
+  &.tertiary {
+    background: $tertiary-node-color;
+    &:hover {
+      background: darken($tertiary-node-color, 3%);
+    }
+    &.selected {
+      background: lighten($tertiary-node-color, 3%);
+    }
+  }
 
   .title {
     color: $white;

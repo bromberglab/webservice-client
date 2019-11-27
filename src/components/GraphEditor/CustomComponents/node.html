@@ -1,6 +1,6 @@
 <div
   class="node"
-  :class="[selected(), node.name, textFilteredOut ? 'filtered' : '', isDataset ? 'secondary' : ''] | kebab"
+  :class="{selected: selected(), filtered: textFilteredOut, secondary: tier == 2, tertiary: tier == 3}"
 >
   <div class="title">
     {{ node.data.displayName }}
