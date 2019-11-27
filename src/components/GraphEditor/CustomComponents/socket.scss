@@ -3,7 +3,7 @@
 .socket {
   display: inline-block;
   cursor: pointer;
-  border: 1px solid white;
+  border: $socket-size / 20 solid $white;
   border-radius: 100%;
   width: $socket-size;
   height: $socket-size;
@@ -41,10 +41,10 @@
 
   &.used {
     &::after {
+      content: "";
       width: $socket-size / 3;
       height: $socket-size / 3;
       background-color: $white;
-      content: "";
       z-index: 2;
       position: absolute;
       left: 50%;
