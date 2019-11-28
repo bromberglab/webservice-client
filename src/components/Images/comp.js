@@ -76,13 +76,6 @@ export default {
     },
     doEdit() {
       let data = this.jsonWrite;
-      ["labels", "env"].forEach(key => {
-        Object.keys(this.editImage[key]).forEach(k => {
-          if (data[key][k] === undefined) {
-            data[key][k] = null;
-          }
-        });
-      });
 
       Api.post("change_image", {
         name: this.editImage.name,
