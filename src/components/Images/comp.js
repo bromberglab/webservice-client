@@ -62,8 +62,32 @@ export default {
       const name = image.name;
       Api.post("update_image", { name });
     },
-    editImage(_) {
-      this.$bvModal.msgBoxConfirm("Not implemented yet");
+    promptEdit(image) {
+      this.jsonWrite = this.jsonRead = {
+        tag: image.imported_tag,
+        labels: image.labels,
+        env: image.env,
+        entrypoint: image.entrypoint,
+        cmd: image.cmd
+      };
+      this.editImage = image;
+
+      this.$bvModal.show("edit-image-modal");
+    },
+    doEdit() {
+      let data = this.jsonWrite;
+      ["labels", "env"].forEach(key => {
+        Object.keys(this.editImage[key]).forEach(k => {
+          if (data[key][k] === undefined) {
+            data[key][k] = null;
+          }
+        });
+      });
+
+      Api.post("change_image", {
+        name: this.editImage.name,
+        data
+      });
     },
     deleteImage(image) {
       this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
@@ -78,6 +102,9 @@ export default {
           Events.$emit("stop-loading");
         });
       });
+    },
+    jsonChanged(j) {
+      this.jsonWrite = j;
     }
   },
   data() {
@@ -85,7 +112,10 @@ export default {
       images: [],
       imagesLoading: [],
       importName: null,
-      importTag: null
+      importTag: null,
+      jsonRead: {},
+      jsonWrite: {},
+      editImage: null
     };
   },
   components: {

@@ -47,7 +47,7 @@
           </b-button>
           <b-button
             variant="success"
-            @click="editImage(i)"
+            @click="promptEdit(i)"
             v-b-tooltip.hover
             title="Change"
           >
@@ -90,5 +90,13 @@
         v-model="importTag"
       ></b-form-input>
     </b-input-group>
+  </b-modal>
+  <b-modal id="edit-image-modal" title="Image" @ok="doEdit">
+    <v-jsoneditor
+      @input="jsonChanged"
+      height="400px"
+      :plus="false"
+      :value="jsonRead"
+    ></v-jsoneditor>
   </b-modal>
 </b-container>
