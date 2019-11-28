@@ -18,9 +18,9 @@
             <font-awesome-icon icon="tag" />
             {{ i.imported_tag }}
           </b-badge>
-          <b-badge variant="secondary">
+          <b-badge variant="secondary" v-b-tooltip.hover :title="i.sha">
             <font-awesome-icon icon="hashtag" />
-            {{ i.sha || '–' }}
+            {{ (i.sha || '–').slice(0, 10) }}
           </b-badge>
           <b-badge variant="secondary">
             <font-awesome-icon icon="sign-in-alt" />
@@ -30,7 +30,7 @@
             <font-awesome-icon icon="sign-out-alt" />
             {{ i.outputs_display || '–' }}
           </b-badge>
-          <b-badge variant="secondary">
+          <b-badge variant="secondary" v-b-tooltip.hover :title="i.updated_at">
             <font-awesome-icon icon="clock" />
             <timeago :datetime="i.updated_at"></timeago>
           </b-badge>
