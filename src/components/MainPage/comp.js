@@ -69,10 +69,23 @@ export default {
     },
     dragOff(e) {
       if (e.fromElement === null) this.dragActive = false;
+    },
+    enableOverlay() {
+      this.overlayStage = 0.5;
+      setTimeout(() => {
+        this.overlayStage = 1;
+      }, 1);
+      setTimeout(() => {
+        this.overlayStage = 2;
+      }, 10000);
+      setTimeout(() => {
+        this.overlayStage = 3;
+      }, 11000);
     }
   },
   data() {
     return {
+      overlayStage: 0,
       loading: 0,
       dragActive: false,
       showCookieInfo: false,
@@ -109,6 +122,8 @@ export default {
         this.showCookieInfo = true;
       }
     });
+
+    Events.$on("enable-overlay", this.enableOverlay);
   },
   components: {
     "vue-spinner": ScaleLoader,

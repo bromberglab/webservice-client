@@ -1,6 +1,17 @@
-<div id="app" class="full-height" @dragenter="dragOn" @dragleave="dragOff">
+<div
+  id="app"
+  class="full-height"
+  @dragenter="dragOn"
+  @dragleave="dragOff"
+  :class="{ matrix: overlayStage > 0, two: overlayStage > 1 }"
+>
   <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
   <div class="slide-overlay" :class="{sidebarOpen}"></div>
+  <img
+    src="https://i.imgur.com/dlsTZSx.gif"
+    class="underlay d-none"
+    :class="{ two: overlayStage > 1, three: overlayStage > 2 }"
+  />
   <router-view id="page-wrap" class="text-center"></router-view>
   <Slide
     :noOverlay="true"
@@ -49,4 +60,9 @@
     </div>
   </div>
   <NotificationPopup></NotificationPopup>
+  <img
+    src="https://i.imgur.com/5A92xsT.gif"
+    class="overlay d-none"
+    :class="{ one: overlayStage >= 1, two: overlayStage > 1, three: overlayStage > 2 }"
+  />
 </div>

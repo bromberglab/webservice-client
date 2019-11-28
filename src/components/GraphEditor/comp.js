@@ -62,6 +62,12 @@ export default {
   watch: {
     filterText: debounce(function(v) {
       Events.$emit("node-filter/text", v);
+      if (v == "matrixmode") {
+        Events.$emit("enable-overlay");
+        setTimeout(() => {
+          this.filterText = "";
+        }, 1000);
+      }
     }, 200)
   },
   methods: {
