@@ -89,6 +89,12 @@ export default {
         data
       });
     },
+    originalEdit() {
+      Api.post("change_image", {
+        name: this.editImage.name,
+        data: {}
+      });
+    },
     deleteImage(image) {
       this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
         value && this.deleteImageConfirmed(image);
