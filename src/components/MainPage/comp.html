@@ -11,6 +11,7 @@
     src="https://i.imgur.com/dlsTZSx.gif"
     class="underlay d-none"
     :class="{ two: overlayStage > 1, three: overlayStage > 2 }"
+    v-if="overlayStage > 0"
   />
   <router-view id="page-wrap" class="text-center"></router-view>
   <Slide
@@ -64,5 +65,6 @@
     src="https://i.imgur.com/5A92xsT.gif"
     class="overlay d-none"
     :class="{ one: overlayStage >= 1, two: overlayStage > 1, three: overlayStage > 2 }"
+    v-if="overlayStage > 0"
   />
 </div>
