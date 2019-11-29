@@ -1,9 +1,9 @@
 <div class="rete-editor">
-  <NodeSettings></NodeSettings>
+  <NodeSettings v-if="!workflow"></NodeSettings>
   <div class="rete-container">
     <div class="node-editor"></div>
   </div>
-  <div class="filter-bar">
+  <div v-if="!workflow" class="filter-bar">
     <b-button-group size="sm">
       <b-button
         v-for="(btn, idx) in buttons"
@@ -17,8 +17,8 @@
     </b-button-group>
     <b-input placeholder="Filter" v-model="filterText" size="sm"></b-input>
   </div>
-  <div class="dock"></div>
-  <div class="save-load">
+  <div :class="{ 'd-none': workflow }" class="dock"></div>
+  <div v-if="!workflow" class="save-load">
     <b-input-group>
       <b-form-input
         type="text"

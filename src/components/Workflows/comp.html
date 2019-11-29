@@ -1,0 +1,8 @@
+<div class="host full-height">
+  <div v-if="!workflow">Here be a list.</div>
+  <GraphEditor
+    v-if="workflow"
+    :workflow="workflow"
+    class="full-height"
+  ></GraphEditor>
+</div>

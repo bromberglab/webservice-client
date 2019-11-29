@@ -1,5 +1,6 @@
 import UploadPage from "../UploadPage/comp.vue";
 import GraphEditor from "../GraphEditor/comp.vue";
+import Workflows from "../Workflows/comp.vue";
 import Notifications from "../Notifications/comp.vue";
 import NotificationPopup from "../NotificationPopup/comp.vue";
 import AdminFrame from "../AdminFrame/comp.vue";
@@ -15,6 +16,7 @@ import { Slide } from "vue-burger-menu";
 
 let routes = [
   [GraphEditor, "Editor"],
+  [Workflows, "Workflows"],
   [UploadPage, "Upload"],
   [Images, "Images"],
   [Notifications, "Notifications"],
@@ -111,9 +113,9 @@ export default {
       this.dragActive = false;
     });
     if (!Auth.authenticated) {
-      this.routes.splice(0, 5);
+      this.routes.splice(0, 6);
     } else if (!Auth.staff) {
-      this.routes.splice(4, 1);
+      this.routes.splice(5, 1);
     }
   },
   mounted() {

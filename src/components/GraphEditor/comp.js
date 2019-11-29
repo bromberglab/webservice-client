@@ -15,6 +15,7 @@ import Auth from "src/services/auth";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
 import AreaPlugin from "rete-area-plugin";
+import ReadonlyPlugin from "rete-readonly-plugin";
 
 const debounce = require("debounce");
 const mutex = new Mutex();
@@ -41,7 +42,7 @@ class CustomSocket extends Rete.Socket {
 
 export default {
   props: {
-    msg: String
+    workflow: Object
   },
   data() {
     return {
@@ -68,7 +69,10 @@ export default {
           this.filterText = "";
         }, 1000);
       }
-    }, 200)
+    }, 200),
+    workflow(v) {
+      this.applyWorkflow(v);
+    }
   },
   methods: {
     filterButtonClicked() {
@@ -92,22 +96,25 @@ export default {
       Api.post("workflow_run", {
         name: this.saveName,
         data
-      }).then(() => {
-        Events.$emit("run-all");
+      }).then(r => {
+        this.$router.push("/workflows/" + r.data);
       });
     },
     loadFlow() {
       Api.get("workflow_storage", {
         name: this.saveName
       }).then(r => {
-        let data = r.data;
-        data = Api.legacySupport(data);
-
-        this.editor.fromJSON(data);
-        setTimeout(() => {
-          this.arrange();
-        }, 0);
+        this.applyWorkflow(r.data);
       });
+    },
+    applyWorkflow(data) {
+      this.editor.trigger("readonly", this.workflow ? true : false);
+      data = Api.legacySupport(data);
+
+      this.editor.fromJSON(data);
+      setTimeout(() => {
+        this.arrange();
+      }, 0);
     },
     fetchTypes() {
       Api.get("file_types").then(r => {
@@ -248,10 +255,11 @@ export default {
       Store.graphButtons = this.buttons;
     },
     restoreState() {
-      Store.graphNodes && this.editor.fromJSON(Store.graphNodes);
-      Store.graphSave && (this.saveName = Store.graphSave);
-      Store.graphFilter && (this.filterText = Store.graphFilter);
-      Store.graphButtons && (this.buttons = Store.graphButtons);
+      if (this.workflow) return this.applyWorkflow(this.workflow);
+      if (Store.graphNodes) this.editor.fromJSON(Store.graphNodes);
+      if (Store.graphSave) this.saveName = Store.graphSave;
+      if (Store.graphFilter) this.filterText = Store.graphFilter;
+      if (Store.graphButtons) this.buttons = Store.graphButtons;
 
       setTimeout(() => {
         this.filterButtonClicked();
@@ -290,6 +298,7 @@ export default {
     });
 
     this.editor.use(AutoArrangePlugin, { margin: { x: 50, y: 50 }, depth: 0 }); // depth - max depth for arrange (0 - unlimited)
+    this.editor.use(ReadonlyPlugin, { enabled: false });
 
     this.fetchTypes();
 
@@ -307,7 +316,7 @@ export default {
     });
   },
   beforeDestroy() {
-    this.storeState();
+    if (this.workflow) this.storeState();
   },
   components: {
     NodeSettings

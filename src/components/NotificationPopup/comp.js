@@ -23,7 +23,7 @@ export default {
     toastHidden(notification, goToPage) {
       if (goToPage) {
         notification.hide = true;
-        this.$router.push("notifications");
+        this.$router.push("/notifications");
       }
       for (let i = 0; i < this.toasts.length; i++) {
         if (this.toasts[i].num == notification.num) {

@@ -7330,6 +7330,11 @@ rete-dock-plugin@^0.2.1:
   resolved "https://registry.yarnpkg.com/rete-dock-plugin/-/rete-dock-plugin-0.2.1.tgz#d5537568eac539236bbe52bea3491fa85b1b3715"
   integrity sha512-o3KGrv7HA2AcnGL/K1VfwZ+yUgmE/wejLGsvhFi6nwJnf8IdiMiEvmISZkiER6lgc/tGmh2Ptyb/cLcCMgFkVQ==
 
+rete-readonly-plugin@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/rete-readonly-plugin/-/rete-readonly-plugin-0.4.1.tgz#bb883f2b880161c5c454b3a54ba6ab45ca2fe942"
+  integrity sha512-kDJFWMVzRL2gowtUOExjb6tMfP4ztjcMS5xou45Y/i4KiHlYmKvxkPyqyWN2DQ8F1+fN+nmG5r/cpkbABOJt6w==
+
 rete-vue-render-plugin@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/rete-vue-render-plugin/-/rete-vue-render-plugin-0.5.0.tgz#c7467f6f931c5af76cd8f4fc2a0b244eef68ac0d"
