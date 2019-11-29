@@ -77,13 +77,13 @@ export default {
       this.overlayStage = 0.5;
       setTimeout(() => {
         this.overlayStage = 1;
-      }, 1);
+      }, 500);
       setTimeout(() => {
         this.overlayStage = 2;
-      }, 10000);
+      }, 10500);
       setTimeout(() => {
         this.overlayStage = 3;
-      }, 11000);
+      }, 12000);
     }
   },
   data() {
