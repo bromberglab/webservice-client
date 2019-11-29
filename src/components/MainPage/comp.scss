@@ -101,12 +101,19 @@ body,
     input,
     .btn,
     .node,
-    .socket {
+    .socket,
+    .toast,
+    .toast-header {
       background-color: black;
       border: 1px solid $green;
     }
-    .socket::after {
+    .socket::after,
+    .bm-burger-bars,
+    .bm-cross {
       background-color: $green;
+    }
+    .bm-menu {
+      background-color: black;
     }
     .connection path {
       stroke: $green;
