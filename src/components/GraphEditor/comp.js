@@ -108,13 +108,25 @@ export default {
       });
     },
     applyWorkflow(data) {
-      this.editor.trigger("readonly", this.workflow ? true : false);
       data = Api.legacySupport(data);
 
       this.editor.fromJSON(data);
       setTimeout(() => {
         this.arrange();
+        if (this.workflow) {
+          this.editor.trigger("readonly", true);
+          Events.$emit("run-all");
+          this.loadJobs();
+        }
       }, 0);
+    },
+    loadJobs() {
+      this.editor.nodes.forEach(node => {
+        Api.get("job", { name: node.id }).then(j => {
+          j.data.type = "job";
+          Events.$emit("server-event/status-change", j.data);
+        });
+      });
     },
     fetchTypes() {
       Api.get("file_types").then(r => {

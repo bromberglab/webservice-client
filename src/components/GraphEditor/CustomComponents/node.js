@@ -28,9 +28,11 @@ export default {
     if (!this.isDocked) {
       Events.$on("server-event/status-change", d => {
         // important: == not ===
-        if (d.type == "job" && d.old_id == this.node.id) {
+        if (d.type == "job" && d.uuid == this.node.id) {
           this.running = !d.finished && d.scheduled; // 'scheduled' on the server means 'running' in vue.
           this.scheduled = !d.scheduled; // 'scheduled' in vue means not yet 'running', so not 'scheduled' on server.
+          this.finished = d.finished;
+          this.success = d.status = "succeeded";
         }
       });
       Events.$on("run-all", () => {
@@ -74,6 +76,8 @@ export default {
     return {
       running: false,
       scheduled: false,
+      finished: false,
+      success: false,
       buttonFilteredOut: false,
       textFilteredOut: false,
       dataNode: null

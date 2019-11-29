@@ -16,7 +16,7 @@ import { Slide } from "vue-burger-menu";
 
 let routes = [
   [GraphEditor, "Editor"],
-  [Workflows, "Workflows"],
+  [Workflows, "Workflows", true],
   [UploadPage, "Upload"],
   [Images, "Images"],
   [Notifications, "Notifications"],
@@ -29,6 +29,7 @@ routes = routes.map(r => {
     path: r[1].toLowerCase().replace(" ", "-"),
     component: r[0],
     title: r[1],
+    hidden: r.length > 2 && r[2],
     children: [
       {
         path: ":path(.*)"

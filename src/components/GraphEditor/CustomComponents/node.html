@@ -54,14 +54,20 @@
   <div
     class="settings"
     @click="openSettings"
-    v-if="!isDataset && !running && !scheduled"
+    v-if="!isDataset && !running && !scheduled && !finished"
   >
-    <font-awesome-icon icon="cog" />
+    <font-awesome-icon fixed-width icon="cog" />
   </div>
   <div class="settings" v-if="running">
-    <font-awesome-icon icon="cog" spin />
+    <font-awesome-icon fixed-width icon="cog" spin />
   </div>
   <div class="settings" v-if="scheduled">
-    <font-awesome-icon icon="hourglass-half" />
+    <font-awesome-icon fixed-width icon="hourglass-half" />
+  </div>
+  <div class="settings finished text-success" v-if="finished && success">
+    <div><font-awesome-icon fixed-width icon="check-circle" /></div>
+  </div>
+  <div class="settings finished text-danger" v-if="finished && !success">
+    <div><font-awesome-icon fixed-width icon="exclamation-circle" /></div>
   </div>
 </div>
