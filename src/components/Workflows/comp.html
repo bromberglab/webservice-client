@@ -1,5 +1,53 @@
 <div class="host full-height">
-  <div v-if="!workflow"></div>
+  <b-table-simple v-if="!workflow">
+    <b-thead>
+      <b-th>
+        Workflow
+      </b-th>
+      <b-th>
+        Template
+      </b-th>
+      <b-th>
+        Finished
+      </b-th>
+      <b-th>
+        Status
+      </b-th>
+    </b-thead>
+    <b-tbody>
+      <b-tr v-for="w in workflows">
+        <b-td>
+          <a href="JavaScript:void(0)" @click="setWorkflow(w)">
+            {{ w.name }}
+          </a>
+        </b-td>
+        <b-td>
+          <b-form-checkbox
+            switch
+            :checked="!w.should_run"
+            class="read-only"
+          ></b-form-checkbox>
+        </b-td>
+        <b-td v-if="w.should_run">
+          <b-form-checkbox
+            switch
+            :checked="w.finished"
+            class="read-only"
+          ></b-form-checkbox>
+        </b-td>
+        <b-td v-if="w.should_run">
+          <b-form-checkbox
+            switch
+            :checked="!w.some_failed"
+            :state="!w.some_failed"
+            :title="!w.some_failed ? 'Success' : 'Failure'"
+            v-b-tooltip.hover
+            class="read-only"
+          ></b-form-checkbox>
+        </b-td>
+      </b-tr>
+    </b-tbody>
+  </b-table-simple>
   <GraphEditor
     v-if="workflow"
     :workflow="workflow"

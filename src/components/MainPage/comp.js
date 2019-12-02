@@ -16,7 +16,7 @@ import { Slide } from "vue-burger-menu";
 
 let routes = [
   [GraphEditor, "Editor"],
-  [Workflows, "Workflows", true],
+  [Workflows, "Workflows"],
   [UploadPage, "Upload"],
   [Images, "Images"],
   [Notifications, "Notifications"],

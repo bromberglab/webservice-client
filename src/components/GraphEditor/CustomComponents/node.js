@@ -32,7 +32,11 @@ export default {
           this.running = !d.finished && d.scheduled; // 'scheduled' on the server means 'running' in vue.
           this.scheduled = !d.scheduled; // 'scheduled' in vue means not yet 'running', so not 'scheduled' on server.
           this.finished = d.finished;
-          this.success = d.status = "succeeded";
+          if (this.node.name.startsWith("node/")) {
+            this.success = d.status == "succeeded";
+          } else {
+            this.success = true;
+          }
         }
       });
       Events.$on("run-all", () => {

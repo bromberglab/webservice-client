@@ -1,4 +1,4 @@
-<div class="rete-editor">
+<div class="rete-editor" :class="{ graphpaper: !workflow }">
   <NodeSettings v-if="!workflow"></NodeSettings>
   <div class="rete-container">
     <div class="node-editor"></div>

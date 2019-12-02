@@ -6,24 +6,45 @@ export default {
     GraphEditor
   },
   methods: {
+    refresh() {
+      const path = this.$route.params.path;
+
+      if (path) {
+        return this.loadWorkflow(path);
+      }
+
+      this.workflow = null;
+
+      Api.get("workflows").then(r => {
+        r.data.sort(a => (a.should_run ? 1 : -1));
+        this.workflows = r.data;
+      });
+    },
     loadWorkflow(name) {
       Api.get("workflow_storage", {
         name
       }).then(r => {
         this.workflow = r.data;
       });
+    },
+    setWorkflow(w) {
+      if (!w.should_run) return;
+
+      this.$router.push("/workflows/" + w.name);
     }
   },
   data() {
     return {
-      workflow: null
+      workflow: null,
+      workflows: []
     };
   },
   mounted() {
-    const path = this.$route.params.path;
-
-    if (path) {
-      this.loadWorkflow(path);
+    this.refresh();
+  },
+  watch: {
+    $route() {
+      this.refresh();
     }
   }
 };

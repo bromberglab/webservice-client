@@ -328,7 +328,7 @@ export default {
     });
   },
   beforeDestroy() {
-    if (this.workflow) this.storeState();
+    if (!this.workflow) this.storeState();
   },
   components: {
     NodeSettings

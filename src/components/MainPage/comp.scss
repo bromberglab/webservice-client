@@ -18,6 +18,12 @@ body,
   }
 }
 
+input,
+.custom-control *::before,
+.custom-control *::after {
+  pointer-events: none !important;
+}
+
 .main-spinner {
   position: absolute;
   left: 50%;
