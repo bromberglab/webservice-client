@@ -74,16 +74,20 @@ export default {
       if (e.fromElement === null) this.dragActive = false;
     },
     enableOverlay() {
-      this.overlayStage = 0.5;
+      this.overlayStage = 0.01;
+
+      setTimeout(() => {
+        this.overlayStage = 0.5;
+      }, 5);
       setTimeout(() => {
         this.overlayStage = 1;
-      }, 500);
+      }, 1000);
       setTimeout(() => {
         this.overlayStage = 2;
-      }, 10500);
+      }, 11000);
       setTimeout(() => {
         this.overlayStage = 3;
-      }, 12000);
+      }, 12500);
     }
   },
   data() {

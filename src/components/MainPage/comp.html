@@ -62,10 +62,14 @@
     </div>
   </div>
   <NotificationPopup></NotificationPopup>
+  <div
+    class="black-overlay"
+    :class="{ one: overlayStage >= 1, two: overlayStage > 1, three: overlayStage > 2 }"
+  ></div>
   <img
     src="https://i.imgur.com/5A92xsT.gif"
     class="overlay d-none"
     :class="{ one: overlayStage >= 1, two: overlayStage > 1, three: overlayStage > 2 }"
-    v-if="overlayStage > 0"
+    v-if="overlayStage > 0.01"
   />
 </div>

@@ -95,6 +95,18 @@ body,
   display: none;
 }
 
+.black-overlay {
+  opacity: 0;
+  transition: all 2s;
+  background-color: black;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
 #app.matrix {
   &.two {
     $green: #00ff41;
@@ -143,6 +155,12 @@ body,
       display: none !important;
     }
   }
+  .black-overlay {
+    opacity: 1;
+    &.two {
+      opacity: 0;
+    }
+  }
   img.underlay.two {
     display: initial !important;
     width: 100%;
@@ -187,5 +205,12 @@ body,
   }
   ::-webkit-resizer {
     background-color: #333;
+  }
+
+  .rete-editor {
+    background: transparent;
+  }
+  .dock {
+    background-color: #0003;
   }
 }
