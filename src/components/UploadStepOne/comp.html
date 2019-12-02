@@ -1,4 +1,7 @@
 <div>
+  <div class="reassembling" v-if="reassembling">
+    Reassembling Chunks ...
+  </div>
   <Uploader
     @upload-start="uploadStarted"
     @file-uploaded="getTree"

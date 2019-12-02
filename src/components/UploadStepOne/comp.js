@@ -11,6 +11,11 @@ export default {
     UploadInputLine
   },
   mounted() {
+    Events.$on("server-event/reassembled", d => {
+      if (d.uuid == this.uploadId) {
+        this.getTree();
+      }
+    });
     Events.$emit("start-loading");
     Api.get("my_upload").then(response => {
       this.uploadId = response.data.uuid;
@@ -22,6 +27,9 @@ export default {
   methods: {
     getTree() {
       Api.get("upload_tree").then(response => (this.files = response.data));
+      Api.get("my_upload").then(response => {
+        this.reassembling = response.data.reassembling;
+      });
     },
     uploadStarted() {
       Events.$emit("stop-drag");
@@ -29,6 +37,7 @@ export default {
   },
   data() {
     return {
+      reassembling: false,
       upload: null,
       uploadId: "loading …",
       files: [
