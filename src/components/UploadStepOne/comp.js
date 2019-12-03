@@ -46,7 +46,12 @@ export default {
         return;
       }
 
-      this.$emit("next-step", $event);
+      // refresh the tree because hidden files were removed.
+      Api.get("upload_tree").then(r => {
+        $event.single_folder =
+          r.data.length == 1 && r.data[0].children && r.data[0].children.length;
+        this.$emit("next-step", $event);
+      });
     }
   },
   data() {

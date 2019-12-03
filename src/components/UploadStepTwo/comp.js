@@ -10,6 +10,7 @@ export default {
   },
   data() {
     return {
+      singleFolder: false,
       stepOne: { tree: null },
       tree: [],
       suffixes: [],
@@ -40,6 +41,7 @@ export default {
       return i;
     },
     setup(v) {
+      this.singleFolder = v.single_folder;
       if (v.error === "manual") {
         v.error = null;
         return this.$bvModal.show("manual-format-modal");
