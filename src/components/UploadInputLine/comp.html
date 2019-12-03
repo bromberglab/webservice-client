@@ -19,6 +19,17 @@
       @input="updateName"
     ></b-form-input>
 
+    <b-input-group-append is-text>
+      <span class="mr-2">Static</span>
+      <b-form-checkbox
+        switch
+        class="mr-n2"
+        v-model="notStatic"
+        :state="notStatic ? true : null"
+      >
+      </b-form-checkbox>
+      <span class="ml-2">Jobs</span>
+    </b-input-group-append>
     <b-input-group-append>
       <b-button variant="success" @click="finishUpload()">Continue</b-button>
     </b-input-group-append>

@@ -42,6 +42,9 @@ export default {
       this.$bvModal.show("extract-modal");
     },
     finishUpload(payload) {
+      if (!this.notStatic) {
+        return this.$emit("continue", { error: "manual" });
+      }
       payload = payload || {};
       Api.post("finish_upload", payload).then(r => {
         if (r.data.error === "extract") {
@@ -62,6 +65,7 @@ export default {
       fileType: null,
       uploadName: null,
       jobCounts,
+      notStatic: true,
       selectedJobCount: null
     };
   },

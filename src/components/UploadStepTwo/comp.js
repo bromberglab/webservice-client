@@ -39,6 +39,10 @@ export default {
       return i;
     },
     setup(v) {
+      if (v.error === "manual") {
+        v.error = null;
+        return this.$bvModal.show("manual-format-modal");
+      }
       this.tree = v.tree;
       this.suffixes = v.suffixes;
       this.checkboxes = [];
