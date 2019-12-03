@@ -1,8 +1,6 @@
-import VFrame from "../VFrame/comp.vue";
 import Config from "src/config";
 
 export default {
-  components: { VFrame },
   methods: {
     changed(p) {
       this.$router.replace({

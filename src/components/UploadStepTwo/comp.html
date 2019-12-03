@@ -1,6 +1,8 @@
 <div class="host">
   <h2 class="display-4 mb-4">
     Upload Format
+    <!-- TODO right link -->
+    <help-link page="upload" class="m-1"></help-link>
   </h2>
   <div class="error" v-if="stepOne && stepOne.error">
     <b-card
@@ -15,7 +17,7 @@
     </b-card>
   </div>
   <div class="main" v-if="stepOne && !stepOne.error">
-    <Tree :files="stepOne.tree" :always-extended="true" class="tree"></Tree>
+    <tree :files="stepOne.tree" :always-extended="true" class="tree"></tree>
     <div v-for="(text, i) in types" class="d-inline-block column">
       <div class="head">
         <b-input-group>
@@ -63,12 +65,16 @@
   <b-modal
     id="manual-format-modal"
     ref="modal"
-    title="Manual Format Type"
     @show="resetModal"
     @shown="focusModal"
     @hidden="resetModal"
     @ok="handleOk"
   >
+    <template v-slot:modal-title>
+      Manual Format Type
+      <!-- TODO right link -->
+      <help-link page="upload"></help-link>
+    </template>
     <form ref="form" @submit.stop.prevent="handleSubmit">
       <b-form-group
         :state="nameState"
@@ -94,8 +100,10 @@
           :state="wrapFiles ? true : null"
         >
         </b-form-checkbox>
-        <span>Keep Files in Folder</span></span
-      >
+        <span>Keep Files in Folder</span>
+        <!-- TODO right link -->
+        <help-link page="upload" sm class="ml-1"></help-link>
+      </span>
     </form>
   </b-modal>
 </div>

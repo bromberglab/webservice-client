@@ -1,10 +1,10 @@
 <div class="host">
-  <VFrame
+  <v-frame
     @path-changed="changed"
     v-if="prod && path !== null"
     prefix="/docs"
     :path="path"
-  ></VFrame>
+  ></v-frame>
   <div v-if="!prod">
     Frames disabled in debug mode.
   </div>

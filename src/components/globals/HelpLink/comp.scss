@@ -1,0 +1,16 @@
+a {
+  display: inline-block;
+  height: 1.3em;
+  font-size: 1.3rem;
+  vertical-align: middle;
+  &.pad {
+    padding: 0.375rem 0;
+  }
+  font-size: 1.3rem;
+  &.sm {
+    font-size: 1rem;
+  }
+  ::v-deep svg {
+    vertical-align: initial;
+  }
+}

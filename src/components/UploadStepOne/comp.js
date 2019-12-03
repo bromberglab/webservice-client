@@ -1,13 +1,11 @@
 import Api from "src/services/api";
 import Uploader from "../Uploader/comp.vue";
-import Tree from "../Tree/comp.vue";
 import UploadInputLine from "../UploadInputLine/comp.vue";
 import Events from "src/services/events";
 
 export default {
   components: {
     Uploader,
-    Tree,
     UploadInputLine
   },
   mounted() {

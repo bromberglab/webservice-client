@@ -1,10 +1,6 @@
-import Tree from "../Tree/comp.vue";
 import Api from "src/services/api";
 
 export default {
-  components: {
-    Tree
-  },
   props: {
     stepOneData: Object
   },
