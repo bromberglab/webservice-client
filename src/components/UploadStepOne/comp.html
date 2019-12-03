@@ -2,6 +2,9 @@
   <div class="reassembling" v-if="reassembling">
     Reassembling Chunks ...
   </div>
+  <div class="reassembling" v-if="extracting">
+    Extracting Archive ...
+  </div>
   <Uploader
     @upload-start="uploadStarted"
     @file-uploaded="getTree"
@@ -10,7 +13,7 @@
   <Tree :files="files"></Tree>
   <UploadInputLine
     class="line"
-    @continue="$emit('next-step', $event)"
+    @continue="continueUpload"
     :upload="upload"
   ></UploadInputLine>
 </div>

@@ -16,6 +16,11 @@ export default {
         this.getTree();
       }
     });
+    Events.$on("server-event/extracted", d => {
+      if (d.uuid == this.uploadId) {
+        this.getTree();
+      }
+    });
     Events.$emit("start-loading");
     Api.get("my_upload").then(response => {
       this.uploadId = response.data.uuid;
@@ -29,15 +34,25 @@ export default {
       Api.get("upload_tree").then(response => (this.files = response.data));
       Api.get("my_upload").then(response => {
         this.reassembling = response.data.reassembling;
+        this.extracting = response.data.extracting;
       });
     },
     uploadStarted() {
       Events.$emit("stop-drag");
+    },
+    continueUpload($event) {
+      if ($event.error === "extracting") {
+        this.extracting = true;
+        return;
+      }
+
+      this.$emit("next-step", $event);
     }
   },
   data() {
     return {
       reassembling: false,
+      extracting: false,
       upload: null,
       uploadId: "loading …",
       files: [
