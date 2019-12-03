@@ -11,8 +11,8 @@ export default {
   data() {
     return {
       stepOne: { tree: null },
-      tree: null,
-      suffixes: null,
+      tree: [],
+      suffixes: [],
       types: [],
       lines: [],
       checkboxes: [],
@@ -97,9 +97,8 @@ export default {
       });
     },
     checkFormValidity() {
-      const valid = this.manualName.length > 0;
-      this.nameState = valid;
-      return valid;
+      this.nameState = this.manualName.length > 0;
+      return this.nameState;
     },
     resetModal() {
       this.manualName = "";
