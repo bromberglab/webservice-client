@@ -17,7 +17,8 @@ export default {
       lines: [],
       checkboxes: [],
       manualName: "",
-      nameState: null
+      nameState: null,
+      wrapFiles: true
     };
   },
   methods: {
@@ -88,6 +89,7 @@ export default {
 
       let payload = {
         manual_format: manualFormat,
+        wrap_files: manualFormat && this.wrapFiles,
         checkboxes,
         suffixes: this.suffixes,
         types: this.types

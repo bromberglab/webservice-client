@@ -84,6 +84,16 @@
           placeholder="e.g. num_file"
         ></b-form-input>
       </b-form-group>
+
+      <span>Unpack single folder</span>
+      <b-form-checkbox
+        switch
+        class="d-inline-block ml-2"
+        v-model="wrapFiles"
+        :state="wrapFiles ? true : null"
+      >
+      </b-form-checkbox>
+      <span>Keep Files together</span>
     </form>
   </b-modal>
 </div>
