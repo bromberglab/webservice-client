@@ -18,12 +18,10 @@ body,
   }
 }
 
-input,
-.custom-control *::before,
-.custom-control *::after {
-  &.read-only {
-    pointer-events: none !important;
-  }
+input.read-only,
+.custom-control.read-only *::before,
+.custom-control.read-only *::after {
+  pointer-events: none !important;
 }
 
 .main-spinner {
