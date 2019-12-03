@@ -1,5 +1,21 @@
 <div class="rete-editor" :class="{ graphpaper: !workflow }">
   <NodeSettings v-if="!workflow"></NodeSettings>
+  <div
+    class="header"
+    v-if="workflow"
+    :class="{ finished: meta.finished, fail: meta.some_failed }"
+  >
+    Workflow:
+    <span v-if="!meta.finished">
+      running
+    </span>
+    <span v-if="meta.finished && !meta.some_failed">
+      succeeded
+    </span>
+    <span v-if="meta.finished && meta.some_failed">
+      failed
+    </span>
+  </div>
   <div class="rete-container">
     <div class="node-editor"></div>
   </div>

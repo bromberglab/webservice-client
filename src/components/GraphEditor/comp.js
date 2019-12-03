@@ -46,6 +46,7 @@ export default {
   },
   data() {
     return {
+      meta: {},
       saveName: "My Workflow",
       editor: null,
       filterText: "",
@@ -107,7 +108,14 @@ export default {
         this.applyWorkflow(r.data);
       });
     },
+    updateMeta() {
+      if (!this.workflow || !this.workflow.name) return;
+      Api.get(`workflows/${this.workflow.name}`).then(r => {
+        this.meta = r.data;
+      });
+    },
     applyWorkflow(data) {
+      this.updateMeta();
       data = Api.legacySupport(data);
 
       this.editor.fromJSON(data);
@@ -325,6 +333,9 @@ export default {
     );
     this.editor.on("warn", e => {
       Notifications.warn("Workflow Editor:", e.message);
+    });
+    Events.$on("server-event/workflow-finished", r => {
+      if (this.workflow && r.name == this.workflow.name) this.updateMeta();
     });
   },
   beforeDestroy() {

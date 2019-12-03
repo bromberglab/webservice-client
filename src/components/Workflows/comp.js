@@ -24,6 +24,7 @@ export default {
       Api.get("workflow_storage", {
         name
       }).then(r => {
+        r.data.name = name;
         this.workflow = r.data;
       });
     },
