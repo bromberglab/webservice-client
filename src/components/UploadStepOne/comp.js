@@ -50,6 +50,14 @@ export default {
           r.data.length == 1 && r.data[0].children && r.data[0].children.length;
         this.$emit("next-step", $event);
       });
+    },
+    clear() {
+      this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
+        value &&
+          Api.delete("my_upload").then(() => {
+            window.location.reload();
+          });
+      });
     }
   },
   data() {
