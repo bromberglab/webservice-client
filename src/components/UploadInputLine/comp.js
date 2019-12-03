@@ -43,7 +43,12 @@ export default {
     },
     finishUpload(payload) {
       if (!this.notStatic) {
-        return this.$emit("continue", { error: "manual" });
+        Api.post("finish_upload", { extract_only: true }).then(r => {
+          if (r.data.error === "extract") {
+            return this.handleExtract();
+          }
+          return this.$emit("continue", { error: "manual" });
+        });
       }
       payload = payload || {};
       Api.post("finish_upload", payload).then(r => {
