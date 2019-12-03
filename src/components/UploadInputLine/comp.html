@@ -32,7 +32,9 @@
         <span class="ml-2">Jobs</span>
       </b-input-group-append>
       <b-input-group-append>
-        <b-button variant="success" @click="finishUpload()">Continue</b-button>
+        <b-button variant="success" @click="finishUpload()" :disabled="!ready"
+          >Continue</b-button
+        >
       </b-input-group-append>
     </b-input-group>
     <help-link page="static_upload" class="ml-2" pad></help-link>

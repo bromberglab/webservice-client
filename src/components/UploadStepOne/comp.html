@@ -15,6 +15,7 @@
     class="line"
     @continue="continueUpload"
     :upload="upload"
+    :ready="files.length"
   ></UploadInputLine>
   <div class="text-left line">
     <b-button variant="danger" @click="clear">

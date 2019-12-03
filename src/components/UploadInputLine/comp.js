@@ -75,7 +75,8 @@ export default {
     };
   },
   props: {
-    upload: Object
+    upload: Object,
+    ready: Boolean
   },
   watch: {
     fileType(newVal, oldVal) {
