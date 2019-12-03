@@ -1,8 +1,7 @@
 <div class="host">
   <h2 class="display-4 mb-4">
     Upload Format
-    <!-- TODO right link -->
-    <help-link page="upload" class="m-1"></help-link>
+    <help-link page="upload_format" class="m-1"></help-link>
   </h2>
   <div class="error" v-if="stepOne && stepOne.error">
     <b-card
@@ -72,8 +71,7 @@
   >
     <template v-slot:modal-title>
       Manual Format Type
-      <!-- TODO right link -->
-      <help-link page="upload"></help-link>
+      <help-link page="manual_upload"></help-link>
     </template>
     <form ref="form" @submit.stop.prevent="handleSubmit">
       <b-form-group
@@ -101,8 +99,11 @@
         >
         </b-form-checkbox>
         <span>Keep Files in Folder</span>
-        <!-- TODO right link -->
-        <help-link page="upload" sm class="ml-1"></help-link>
+        <help-link
+          page="manual_upload#unpacking-a-single-folder"
+          sm
+          class="ml-1"
+        ></help-link>
       </span>
     </form>
   </b-modal>
