@@ -2,6 +2,9 @@
   <b-table-simple v-if="!workflow">
     <b-thead>
       <b-th>
+        Time
+      </b-th>
+      <b-th>
         Workflow
       </b-th>
       <b-th>
@@ -16,6 +19,9 @@
     </b-thead>
     <b-tbody>
       <b-tr v-for="w in workflows">
+        <b-td v-b-tooltip.hover :title="w.updated_at">
+          <timeago :datetime="w.updated_at"></timeago>
+        </b-td>
         <b-td>
           <a href="JavaScript:void(0)" @click="setWorkflow(w)">
             {{ w.name }}
