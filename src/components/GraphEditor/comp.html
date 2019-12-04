@@ -35,19 +35,21 @@
   </div>
   <div :class="{ 'd-none': workflow }" class="dock"></div>
   <div v-if="!workflow" class="save-load">
-    <b-input-group>
-      <b-form-input
-        type="text"
-        placeholder="Save Name"
-        v-model="saveName"
-      ></b-form-input>
+    <form action="." @submit.prevent="loadFlow">
+      <b-input-group>
+        <b-form-input
+          type="text"
+          placeholder="Save Name"
+          v-model="saveName"
+        ></b-form-input>
 
-      <b-input-group-append>
-        <b-button variant="outline-primary" @click="loadFlow">Load</b-button>
-        <b-button variant="outline-success" @click="saveFlow">Save</b-button>
-        <b-button variant="success" @click="runFlow">Run</b-button>
-      </b-input-group-append>
-    </b-input-group>
+        <b-input-group-append>
+          <b-button variant="outline-primary" @click="loadFlow">Load</b-button>
+          <b-button variant="outline-success" @click="saveFlow">Save</b-button>
+          <b-button variant="success" @click="runFlow">Run</b-button>
+        </b-input-group-append>
+      </b-input-group>
+    </form>
     <b-button variant="info" @click="arrange">Arrange</b-button>
   </div>
 </div>
