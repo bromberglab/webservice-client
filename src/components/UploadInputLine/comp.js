@@ -23,6 +23,7 @@ export default {
       this.uploadName = value;
     }, Config.debounceDefault),
     updateType: debounce(function(value) {
+      // deprecated
       this.fileType = value;
     }, Config.debounceDefault),
     updateUpload(isFinished) {

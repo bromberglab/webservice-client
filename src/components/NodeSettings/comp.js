@@ -31,23 +31,6 @@ export default {
       this.nodeMode.node = this.node.node.name.startsWith("node/");
       this.nameOptions = [];
       this.selectedName = null;
-
-      if (this.nodeMode.input) {
-        const type = this.node.node.name.slice("from_data/".length);
-        Api.get("names_for_type", { type }).then(r => {
-          this.nameOptions = r.data;
-          const name = this.node.node.data.data_name;
-
-          if (r.data.find(v => v == name)) {
-            this.selectedName = name;
-          } else {
-            this.selectedName = r.data.length ? "Select …" : "None available";
-          }
-        });
-      }
-      if (this.nodeMode.output) {
-        this.outputName = this.node.node.data.data_name;
-      }
     },
     outputNameChange: debounce(function(v) {
       this.node.node.data.data_name = v;

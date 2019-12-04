@@ -94,6 +94,7 @@ export default {
     },
     runFlow() {
       let data = this.editor.toJSON();
+      data.id = Config.reteVersion;
       Api.post("workflow_run", {
         name: this.saveName,
         data
