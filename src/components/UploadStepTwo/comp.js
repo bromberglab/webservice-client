@@ -107,8 +107,6 @@ export default {
       this.nameState = null;
     },
     handleOk(bvModalEvt) {
-      // Prevent modal from closing
-      bvModalEvt.preventDefault();
       // Trigger submit handler
       this.handleSubmit();
     },

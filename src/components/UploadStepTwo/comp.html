@@ -67,7 +67,7 @@
     @show="resetModal"
     @shown="focusModal"
     @hidden="resetModal"
-    @ok="handleOk"
+    @ok.prevent="handleOk"
   >
     <template v-slot:modal-title>
       Manual Format Type

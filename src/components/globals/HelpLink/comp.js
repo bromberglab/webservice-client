@@ -1,7 +1,6 @@
 export default {
   methods: {
-    click($event) {
-      $event.preventDefault();
+    click() {
       var win = window.open("#/docs/" + this.path, "_blank");
       win.focus();
     },
