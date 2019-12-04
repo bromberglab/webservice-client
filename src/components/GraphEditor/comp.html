@@ -5,7 +5,10 @@
     v-if="workflow"
     :class="{ finished: meta.finished, fail: meta.some_failed }"
   >
-    Workflow:
+    <span @click="changeNameModal"
+      ><font-awesome-icon icon="pen" class="mr-1"> </font-awesome-icon> {{
+      workflow.name }}</span
+    >:
     <span v-if="!meta.finished">
       running
     </span>
@@ -52,4 +55,19 @@
     </form>
     <b-button variant="info" @click="arrange">Arrange</b-button>
   </div>
+
+  <b-modal
+    id="flow-name-modal"
+    title="Import"
+    @ok="changeName"
+    @hide="changeNameAbort"
+  >
+    <b-form-input
+      type="text"
+      placeholder="Workflow Name"
+      v-model="workflow.name"
+      required
+    >
+    </b-form-input>
+  </b-modal>
 </div>

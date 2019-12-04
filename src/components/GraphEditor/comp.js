@@ -285,6 +285,26 @@ export default {
       setTimeout(() => {
         this.filterButtonClicked();
       }, 0);
+    },
+    changeName() {
+      this.workflow.name = this.workflow.name
+        .replace(" ", "-")
+        .replace(".", "-")
+        .replace("\\", "-")
+        .replace("/", "-");
+      Api.post("workflow_name", {
+        old: this.workflow.originalName,
+        new: this.workflow.name
+      }).then(() => this.$router.replace("/workflows/" + this.workflow.name));
+      this.workflow.originalName = this.workflow.name;
+    },
+    changeNameAbort() {
+      this.workflow.name = this.workflow.originalName;
+    },
+    changeNameModal() {
+      this.workflow.originalName =
+        this.workflow.originalName || this.workflow.name;
+      this.$bvModal.show("flow-name-modal");
     }
   },
   mounted() {
