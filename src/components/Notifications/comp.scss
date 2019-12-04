@@ -1,5 +1,4 @@
 .host {
-  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,6 +8,7 @@
 ::v-deep .toast,
 .b-toast,
 .link-container {
+  text-align: left;
   max-width: 800px;
   width: 100%;
 }
