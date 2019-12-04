@@ -16,8 +16,12 @@ export default {
       this.workflow = null;
 
       Api.get("workflows").then(r => {
-        r.data.sort((a, b) => b.updated_at - a.updated_at);
-        r.data.sort((a, b) => (a.should_run ? 1 : 0) - (b.should_run ? 1 : 0));
+        r.data.sort(
+          (a, b) =>
+            (a.should_run ? 1 : 0) - (b.should_run ? 1 : 0) ||
+            (a.updated_at < b.updated_at ? 1 : -1)
+        );
+
         this.workflows = r.data;
       });
     },
