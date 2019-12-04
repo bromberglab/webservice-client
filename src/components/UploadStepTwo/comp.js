@@ -15,7 +15,8 @@ export default {
       checkboxes: [],
       manualName: "",
       nameState: null,
-      wrapFiles: true
+      wrapFiles: true,
+      staticUpload: false
     };
   },
   methods: {
@@ -37,9 +38,10 @@ export default {
       return i;
     },
     setup(v) {
-      this.singleFolder = v.single_folder;
       if (v.error === "manual") {
         v.error = null;
+        this.staticUpload = true;
+        this.singleFolder = v.single_folder;
         return this.$bvModal.show("manual-format-modal");
       }
       this.tree = v.tree;
@@ -87,7 +89,7 @@ export default {
 
       let payload = {
         manual_format: manualFormat,
-        wrap_files: manualFormat && this.wrapFiles,
+        wrap_files: manualFormat && this.wrapFiles && this.staticUpload,
         checkboxes,
         suffixes: this.suffixes,
         types: this.types
