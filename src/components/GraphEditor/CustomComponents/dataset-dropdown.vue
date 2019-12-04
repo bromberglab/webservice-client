@@ -120,9 +120,11 @@ export default {
       return this.typeSelection;
     },
     selectedName() {
-      if (!this.connected) return "Please connect";
-      if (!this.nameSelection) return "Select Dataset …";
-      if (this.isInput && !this.nameOptions.length) return "Not available";
+      if (this.isInput) {
+        if (!this.connected) return "Please connect";
+        if (!this.nameSelection) return "Select Dataset …";
+        if (this.isInput && !this.nameOptions.length) return "Not available";
+      }
 
       return this.nameSelection;
     },
