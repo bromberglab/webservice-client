@@ -57,6 +57,7 @@
   </div>
 
   <b-modal
+    v-if="workflow"
     id="flow-name-modal"
     title="Import"
     @ok="changeName"
