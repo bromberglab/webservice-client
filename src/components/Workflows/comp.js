@@ -25,18 +25,18 @@ export default {
         this.workflows = r.data;
       });
     },
-    loadWorkflow(name) {
+    loadWorkflow(pk) {
       Api.get("workflow_storage", {
-        name
+        pk
       }).then(r => {
-        r.data.name = name;
+        r.data.pk = pk;
         this.workflow = r.data;
       });
     },
     setWorkflow(w) {
       if (!w.should_run) return;
 
-      this.$router.push("/workflows/" + w.name);
+      this.$router.push("/workflows/" + w.pk);
     }
   },
   data() {

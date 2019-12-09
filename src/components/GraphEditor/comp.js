@@ -110,8 +110,8 @@ export default {
       });
     },
     updateMeta() {
-      if (!this.workflow || !this.workflow.name) return;
-      Api.get(`workflows/${this.workflow.name}`).then(r => {
+      if (!this.workflow || !this.workflow.pk) return;
+      Api.get(`workflows/${this.workflow.pk}`).then(r => {
         this.meta = r.data;
       });
     },
@@ -287,23 +287,17 @@ export default {
       }, 0);
     },
     changeName() {
-      this.workflow.name = this.workflow.name
-        .replace(" ", "-")
-        .replace(".", "-")
-        .replace("\\", "-")
-        .replace("/", "-");
       Api.post("workflow_name", {
-        old: this.workflow.originalName,
-        new: this.workflow.name
-      }).then(() => this.$router.replace("/workflows/" + this.workflow.name));
-      this.workflow.originalName = this.workflow.name;
+        pk: this.workflow.pk,
+        name: this.meta.name
+      });
+      this.workflow.originalName = this.meta.name;
     },
     changeNameAbort() {
-      this.workflow.name = this.workflow.originalName;
+      this.meta.name = this.workflow.originalName;
     },
     changeNameModal() {
-      this.workflow.originalName =
-        this.workflow.originalName || this.workflow.name;
+      this.workflow.originalName = this.workflow.originalName || this.meta.name;
       this.$bvModal.show("flow-name-modal");
     }
   },
@@ -356,7 +350,7 @@ export default {
       Notifications.warn("Workflow Editor:", e.message);
     });
     Events.$on("server-event/workflow-finished", r => {
-      if (this.workflow && r.name == this.workflow.name) this.updateMeta();
+      if (this.workflow && r.pk == this.workflow.pk) this.updateMeta();
     });
   },
   beforeDestroy() {

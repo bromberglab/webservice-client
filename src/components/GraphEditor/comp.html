@@ -7,7 +7,7 @@
   >
     <span @click="changeNameModal"
       ><font-awesome-icon icon="pen" class="mr-1"> </font-awesome-icon> {{
-      workflow.name }}</span
+      meta.name }}</span
     >:
     <span v-if="!meta.finished">
       running
@@ -66,7 +66,7 @@
     <b-form-input
       type="text"
       placeholder="Workflow Name"
-      v-model="workflow.name"
+      v-model="meta.name"
       required
     >
     </b-form-input>
