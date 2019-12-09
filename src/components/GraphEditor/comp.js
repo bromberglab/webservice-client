@@ -103,8 +103,14 @@ export default {
       });
     },
     loadFlow() {
+      const name = this.saveName;
+      let pk = "";
+      if (name[0] === "#") {
+        pk = name.slice(1);
+      }
       Api.get("workflow_storage", {
-        name: this.saveName
+        name,
+        pk
       }).then(r => {
         this.applyWorkflow(r.data);
       });
