@@ -47,7 +47,6 @@ export default {
   props: ["node"],
   data() {
     return {
-      text: "Pls connct",
       connected: false,
       typeOptions: [],
       nameOptions: [],
@@ -61,7 +60,8 @@ export default {
       if (!v) return;
       v.dropdown = this;
       v.data.type && this.selectType(v.data.type);
-      v.data.data_name && this.selectName(v.data.data_name);
+      (v.data.data_name && this.selectName(v.data.data_name)) ||
+        this.randomName();
     }
   },
   methods: {
@@ -84,8 +84,17 @@ export default {
     selectName(name) {
       this.nameSelection = name;
       this.node.data.data_name = name;
+      return 1;
+    },
+    randomName() {
+      if (this.isInput) return;
+      Api.get("random_name").then(r => {
+        this.selectName(r.data);
+      });
     },
     selectType(type) {
+      if (this.typeSelection == type) return;
+
       this.typeSelection = type;
       this.node.data.type = type;
 
