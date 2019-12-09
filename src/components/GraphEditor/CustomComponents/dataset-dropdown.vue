@@ -33,6 +33,7 @@
       placeholder="Dataset name"
       class="name"
       @input="nameChange"
+      @pointermove.stop=""
     ></b-input>
   </div>
 </template>
