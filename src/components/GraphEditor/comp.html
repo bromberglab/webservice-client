@@ -18,6 +18,10 @@
     <span v-if="meta.finished && meta.some_failed">
       failed
     </span>
+    <a href="JavaScript:void(0)" class="float-right" @click="asTemplate">
+      As Template
+      <font-awesome-icon :icon="['far', 'file']"></font-awesome-icon>
+    </a>
   </div>
   <div class="rete-container">
     <div class="node-editor"></div>

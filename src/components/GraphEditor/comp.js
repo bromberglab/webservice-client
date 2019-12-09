@@ -121,6 +121,10 @@ export default {
         this.meta = r.data;
       });
     },
+    asTemplate() {
+      Store.graphLoadTemplate = `#${this.meta.pk}`;
+      this.$router.push("/editor/");
+    },
     applyWorkflow(data) {
       this.updateMeta();
       data = Api.legacySupport(data);
@@ -285,6 +289,7 @@ export default {
       if (this.workflow) return this.applyWorkflow(this.workflow);
       if (Store.graphLoadTemplate) {
         this.saveName = Store.graphLoadTemplate;
+        Store.graphLoadTemplate = null;
         return this.loadFlow();
       }
       if (Store.graphNodes) this.editor.fromJSON(Store.graphNodes);
