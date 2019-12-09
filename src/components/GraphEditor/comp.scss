@@ -25,6 +25,11 @@
     }
   }
 
+  .btn-outline-primary,
+  .btn-outline-success {
+    background-color: $white;
+  }
+
   .dock {
     background-color: white;
     overflow-x: auto;
