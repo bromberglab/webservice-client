@@ -1,5 +1,6 @@
 import GraphEditor from "../GraphEditor/comp.vue";
 import Api from "src/services/api";
+import Store from "src/services/store";
 
 export default {
   components: {
@@ -33,8 +34,12 @@ export default {
         this.workflow = r.data;
       });
     },
+    loadTemplate(w) {
+      Store.graphLoadTemplate = w.name;
+      this.$router.push("/editor/");
+    },
     setWorkflow(w) {
-      if (!w.should_run) return;
+      if (!w.should_run) return this.loadTemplate(w);
 
       this.$router.push("/workflows/" + w.pk);
     }

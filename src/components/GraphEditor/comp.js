@@ -277,6 +277,10 @@ export default {
     },
     restoreState() {
       if (this.workflow) return this.applyWorkflow(this.workflow);
+      if (Store.graphLoadTemplate) {
+        this.saveName = Store.graphLoadTemplate;
+        return this.loadFlow();
+      }
       if (Store.graphNodes) this.editor.fromJSON(Store.graphNodes);
       if (Store.graphSave) this.saveName = Store.graphSave;
       if (Store.graphFilter) this.filterText = Store.graphFilter;
