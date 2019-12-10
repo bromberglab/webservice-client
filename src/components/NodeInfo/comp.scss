@@ -9,6 +9,8 @@ pre {
   padding: 10px;
   background-color: #333;
   color: white;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 td:first-child {
