@@ -3,6 +3,7 @@ import Config from "src/config";
 axios.defaults.withCredentials = true;
 
 export default {
+  uri: Config.apiUri,
   endpointToUrl(endpoint) {
     return Config.apiUri + "/" + endpoint + "/";
   },

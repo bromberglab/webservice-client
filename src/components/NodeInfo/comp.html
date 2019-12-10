@@ -3,9 +3,33 @@
   title="Runtime Info"
   :cancel-disabled="true"
   @hidden="dismiss"
+  size="lg"
 >
   <div v-if="node">
-    Hi
+    <table class="w-100">
+      <tbody>
+        <tr>
+          <td>
+            Logs:
+          </td>
+          <td class="text-right">
+            <b-button variant="success" @click="loadLogs">
+              <font-awesome-icon fixed-width :icon="['far', 'file-alt']" />
+            </b-button>
+            <b-button
+              variant="primary"
+              class="ml-2"
+              :href="`${uri}/job/logs/?name=${node.node.id}`"
+            >
+              <font-awesome-icon fixed-width icon="download" />
+            </b-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <b-collapse id="collapse-logs" class="pt-3">
+      <pre>{{logs}}</pre>
+    </b-collapse>
   </div>
 
   <template v-slot:modal-footer>
