@@ -10,3 +10,13 @@ pre {
   background-color: #333;
   color: white;
 }
+
+td:first-child {
+  text-align: right;
+  padding-right: 15px;
+  white-space: nowrap;
+}
+td:last-child {
+  text-align: left;
+  width: 90%;
+}

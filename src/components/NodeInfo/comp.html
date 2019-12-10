@@ -1,6 +1,6 @@
 <b-modal
   id="node-info-modal"
-  title="Runtime Info"
+  title="Job Info"
   :cancel-disabled="true"
   @hidden="dismiss"
   size="lg"
@@ -10,9 +10,17 @@
       <tbody>
         <tr>
           <td>
+            Runtime:
+          </td>
+          <td>
+            {{ meta.runtime | time }}
+          </td>
+        </tr>
+        <tr>
+          <td>
             Logs:
           </td>
-          <td class="text-right">
+          <td>
             <b-button variant="success" @click="loadLogs">
               <font-awesome-icon fixed-width :icon="['far', 'file-alt']" />
             </b-button>

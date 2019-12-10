@@ -18,6 +18,14 @@ import HelpLink from "src/components/globals/HelpLink/comp.vue";
 
 import "./custom.scss";
 
+Number.prototype.pad = function(size) {
+  var s = String(this);
+  while (s.length < (size || 2)) {
+    s = "0" + s;
+  }
+  return s;
+};
+
 Vue.config.productionTip = false;
 Vue.use(uploader);
 Vue.use(BootstrapVue);

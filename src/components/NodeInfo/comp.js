@@ -23,13 +23,19 @@ export default {
           this.$root.$emit("bv::toggle::collapse", "collapse-logs");
         }, 0);
       });
+    },
+    render() {
+      Api.get("job", {
+        name: this.node.node.id
+      }).then(r => (this.meta = r.data));
     }
   },
   data() {
     return {
       node: null,
       logs: "loading …",
-      uri: Api.uri
+      uri: Api.uri,
+      meta: {}
     };
   },
   mounted() {
@@ -41,10 +47,23 @@ export default {
   watch: {
     node(v) {
       if (v !== null) {
+        this.render();
         this.showModal();
       } else {
         this.hideModal();
       }
+    }
+  },
+  filters: {
+    time: function(value) {
+      if (value !== 0 && !value) return "";
+      value = ~~value;
+      let hours = Math.floor(value / 3600).pad(2);
+      value %= 3600;
+      let minutes = Math.floor(value / 60).pad(2);
+      let seconds = (value % 60).pad(2);
+
+      return `${hours}:${minutes}:${seconds}`;
     }
   }
 };
