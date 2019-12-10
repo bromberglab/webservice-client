@@ -12,16 +12,22 @@
           <td>
             Max CPU:
           </td>
-          <td>
-            {{ ~~meta.max_cpu + "mCores" }}
+          <td v-if="meta.max_cpu >= 0">
+            {{ ~~meta.max_cpu + " mCores" }}
+          </td>
+          <td v-if="meta.max_cpu < 0">
+            Job duration too short.
           </td>
         </tr>
         <tr>
           <td>
             Max Memory:
           </td>
-          <td>
-            {{ ~~meta.max_memory + "MiBytes" }}
+          <td v-if="meta.max_memory >= 0">
+            {{ ~~meta.max_memory + " MiBytes" }}
+          </td>
+          <td v-if="meta.max_memory < 0">
+            Job duration too short.
           </td>
         </tr>
         <tr>
