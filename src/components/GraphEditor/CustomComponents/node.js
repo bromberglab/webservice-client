@@ -14,6 +14,10 @@ export default {
     openSettings() {
       Events.$emit("open-node-settings", this);
     },
+    openInfo() {
+      if (this.isDataset) return;
+      Events.$emit("open-node-info", this);
+    },
     download() {
       let type = this.node.data.type;
       Api.post("create_download", {

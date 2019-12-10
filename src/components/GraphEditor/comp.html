@@ -1,5 +1,6 @@
 <div class="rete-editor" :class="{ graphpaper: !workflow, edit: !workflow }">
   <NodeSettings v-if="!workflow"></NodeSettings>
+  <NodeInfo v-if="workflow"></NodeInfo>
   <div
     class="header"
     v-if="workflow"

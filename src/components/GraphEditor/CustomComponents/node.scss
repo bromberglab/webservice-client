@@ -91,6 +91,20 @@
           transform: translate(-50%, -50%);
         }
       }
+
+      &.info {
+        cursor: pointer;
+        &:hover {
+          .no-hover {
+            display: none;
+          }
+        }
+        &:not(:hover) {
+          .hover {
+            display: none;
+          }
+        }
+      }
     }
   }
 

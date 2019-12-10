@@ -64,10 +64,28 @@
   <div class="settings" v-if="scheduled">
     <font-awesome-icon fixed-width icon="hourglass-half" />
   </div>
-  <div class="settings finished text-success" v-if="finished && success">
-    <div><font-awesome-icon fixed-width icon="check-circle" /></div>
-  </div>
-  <div class="settings finished text-danger" v-if="finished && !success">
-    <div><font-awesome-icon fixed-width icon="exclamation-circle" /></div>
+  <div
+    class="settings finished"
+    :class="isDataset ? '' : 'info'"
+    v-if="finished"
+    @click="openInfo"
+  >
+    <div class="no-hover">
+      <font-awesome-icon
+        class="text-success"
+        fixed-width
+        icon="check-circle"
+        v-if="success"
+      />
+      <font-awesome-icon
+        class="text-danger"
+        fixed-width
+        icon="exclamation-circle"
+        v-if="!success"
+      />
+    </div>
+    <div class="hover" v-if="!isDataset">
+      <font-awesome-icon class="text-primary" fixed-width icon="info-circle" />
+    </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { Mutex } from "async-mutex";
 import DockPlugin from "rete-dock-plugin";
 import CustomNodeComponent from "./CustomComponents/node.vue";
 import NodeSettings from "../NodeSettings/comp.vue";
+import NodeInfo from "../NodeInfo/comp.vue";
 import Api from "src/services/api";
 import Config from "src/config";
 import Notifications from "src/services/notifications";
@@ -372,6 +373,7 @@ export default {
     if (!this.workflow) this.storeState();
   },
   components: {
-    NodeSettings
+    NodeSettings,
+    NodeInfo
   }
 };

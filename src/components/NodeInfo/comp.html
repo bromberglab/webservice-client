@@ -1,0 +1,18 @@
+<b-modal
+  id="node-info-modal"
+  title="Runtime Info"
+  :cancel-disabled="true"
+  @hidden="dismiss"
+>
+  <div v-if="node">
+    Hi
+  </div>
+
+  <template v-slot:modal-footer>
+    <div class="w-100">
+      <b-button variant="primary" class="float-right" @click="dismiss">
+        Close
+      </b-button>
+    </div>
+  </template>
+</b-modal>
