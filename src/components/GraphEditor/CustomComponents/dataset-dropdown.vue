@@ -99,17 +99,21 @@ export default {
       this.typeSelection = type;
       this.node.data.type = type;
 
-      Api.get("names_for_type", { type }).then(r => {
-        this.nameOptions = r.data;
-        const name = this.node.data.data_name;
+      if (this.node.data.readOnly) {
+        this.nameOptions = [this.node.data.data_name];
+        this.selectName(this.node.data.data_name);
+      } else
+        Api.get("names_for_type", { type }).then(r => {
+          this.nameOptions = r.data;
+          const name = this.node.data.data_name;
 
-        if (!this.isInput || r.data.find(v => v == name)) {
-          this.selectName(name);
-        } else {
-          this.nameSelection = null;
-        }
-        this.rerender();
-      });
+          if (!this.isInput || r.data.find(v => v == name)) {
+            this.selectName(name);
+          } else {
+            this.nameSelection = null;
+          }
+          this.rerender();
+        });
     },
     rerender() {
       let node = this.node;

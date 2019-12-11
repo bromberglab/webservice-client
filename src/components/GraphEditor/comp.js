@@ -59,7 +59,8 @@ export default {
         { caption: "Outputs", state: true },
         { caption: "Nodes", state: true }
       ],
-      fileTypes: []
+      fileTypes: [],
+      shared: false
     };
   },
   watch: {
@@ -129,6 +130,9 @@ export default {
     applyWorkflow(data) {
       this.updateMeta();
       data = Api.legacySupport(data);
+      if (this.workflow) {
+        Object.values(data.nodes).map(n => (n.data.readOnly = true));
+      }
 
       this.editor.fromJSON(data);
       setTimeout(() => {
@@ -315,10 +319,15 @@ export default {
     changeNameModal() {
       this.workflow.originalName = this.workflow.originalName || this.meta.name;
       this.$bvModal.show("flow-name-modal");
+    },
+    share() {
+      this.shared = true;
+      this.$copyText(window.location.href);
+      Api.post("share_workflow", { pk: this.meta.pk });
     }
   },
   mounted() {
-    if (!Auth.authenticated) return this.$router.push("docs");
+    if (!Auth.authenticated && !this.workflow) return this.$router.push("docs");
     Events.$emit("start-loading");
     this.editor = new Rete.NodeEditor(
       Config.reteId,

@@ -15,6 +15,7 @@ import VueTimeago from "vue-timeago";
 import Tree from "src/components/globals/Tree/comp.vue";
 import VFrame from "src/components/globals/VFrame/comp.vue";
 import HelpLink from "src/components/globals/HelpLink/comp.vue";
+import VueClipboard from "vue-clipboard2";
 
 import "./custom.scss";
 
@@ -35,6 +36,7 @@ Vue.use(VueSSE);
 Vue.use(VueTimeago, {
   locale: "en"
 });
+Vue.use(VueClipboard);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("tree", Tree);
 Vue.component("v-frame", VFrame);
