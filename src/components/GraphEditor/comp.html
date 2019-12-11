@@ -7,8 +7,7 @@
     :class="{ finished: meta.finished, fail: meta.some_failed }"
   >
     <span @click="changeNameModal"
-      ><font-awesome-icon icon="pen" class="mr-1"> </font-awesome-icon> {{
-      meta.name }}</span
+      ><font-awesome-icon icon="pen" class="mr-1" /> {{ meta.name }}</span
     >:
     <span v-if="!meta.finished">
       running
@@ -19,9 +18,12 @@
     <span v-if="meta.finished && meta.some_failed">
       failed
     </span>
+    <span v-if="meta.finished && meta.some_failed">
+      <font-awesome-icon />
+    </span>
     <a href="JavaScript:void(0)" class="float-right" @click="asTemplate">
       As Template
-      <font-awesome-icon :icon="['far', 'file']"></font-awesome-icon>
+      <font-awesome-icon :icon="['far', 'file']" />
     </a>
   </div>
   <div class="rete-container">
