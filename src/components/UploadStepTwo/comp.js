@@ -106,7 +106,7 @@ export default {
       this.manualName = "";
       this.nameState = null;
     },
-    handleOk(bvModalEvt) {
+    handleOk() {
       // Trigger submit handler
       this.handleSubmit();
     },

@@ -1,5 +1,4 @@
 import Events from "src/services/events";
-import Api from "src/services/api";
 const debounce = require("debounce");
 
 // boot up the demo
