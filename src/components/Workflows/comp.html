@@ -19,8 +19,8 @@
     </b-thead>
     <b-tbody>
       <b-tr v-for="w in workflows" :key="w.pk">
-        <b-td v-b-tooltip.hover :title="w.updated_at">
-          <timeago :datetime="w.updated_at"></timeago>
+        <b-td v-b-tooltip.hover :title="w.created_at">
+          <timeago :datetime="w.created_at"></timeago>
         </b-td>
         <b-td>
           <a href="JavaScript:void(0)" @click="setWorkflow(w)">

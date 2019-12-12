@@ -20,7 +20,7 @@ export default {
         r.data.sort(
           (a, b) =>
             (a.should_run ? 1 : 0) - (b.should_run ? 1 : 0) ||
-            (a.updated_at < b.updated_at ? 1 : -1)
+            (a.created_at < b.created_at ? 1 : -1)
         );
 
         this.workflows = r.data;
