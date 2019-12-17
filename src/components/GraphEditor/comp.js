@@ -9,10 +9,10 @@ import NodeInfo from "../NodeInfo/comp.vue";
 import Api from "src/services/api";
 import Config from "src/config";
 import Notifications from "src/services/notifications";
-import Types from "src/services/types";
 import Store from "src/services/store";
 import Events from "src/services/events";
 import Auth from "src/services/auth";
+import Sockets from "src/services/sockets";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AutoArrangePlugin from "rete-auto-arrange-plugin";
 import AreaPlugin from "rete-area-plugin";
@@ -20,26 +20,6 @@ import ReadonlyPlugin from "rete-readonly-plugin";
 
 const debounce = require("debounce");
 const mutex = new Mutex();
-
-class CustomSocket extends Rete.Socket {
-  constructor(name, isDataSocket) {
-    super(name);
-    this.isDataSocket = isDataSocket || false;
-  }
-  compatibleWith(otherSocket) {
-    if (this.isDataSocket && otherSocket.isDataSocket) {
-      return false;
-    }
-    if (this.isDataSocket || otherSocket.isDataSocket) {
-      return true;
-    }
-
-    let str1 = this.name,
-      str2 = otherSocket.name;
-
-    return Types.areCompatible(str1, str2);
-  }
-}
 
 export default {
   props: {
@@ -52,7 +32,6 @@ export default {
       editor: null,
       filterText: "",
       classes: Array(),
-      sockets: {},
       engine: null,
       buttons: [
         { caption: "Inputs", state: true },
@@ -183,8 +162,6 @@ export default {
     },
     createDataNodes() {
       let updateDataNode = this.updateDataNode;
-      let inputSocket = new CustomSocket("input", true);
-      let outputSocket = new CustomSocket("output", true);
       this.classes.push(
         class extends Rete.Component {
           constructor() {
@@ -192,7 +169,7 @@ export default {
           }
 
           builder(node) {
-            let out = new Rete.Output("o/1", "-", inputSocket);
+            let out = new Rete.Output("o/1", "-", Sockets.input);
 
             node.addOutput(out);
             node.data.type = node.data.type || null;
@@ -213,7 +190,7 @@ export default {
           }
 
           builder(node) {
-            let inp = new Rete.Input("i/" + 1, "-", outputSocket);
+            let inp = new Rete.Input("i/" + 1, "-", Sockets.output);
 
             node.addInput(inp);
             node.data.type = node.data.type || null;
@@ -229,7 +206,6 @@ export default {
       );
     },
     fetchImages() {
-      let sockets = this.sockets;
       Api.get("list").then(r => {
         r.data.forEach(image => {
           this.classes.push(
@@ -240,17 +216,21 @@ export default {
 
               builder(node) {
                 node.data.image = node.data.image || image;
+                node.data.addInputs = node.data.addInputs || 0;
+                node.data.addOutputs = node.data.addOutputs || 0;
 
                 let j = 0;
                 image.inputs.forEach(v => {
-                  sockets[v] = sockets[v] || new CustomSocket(v);
-                  node.addInput(new Rete.Input("i/" + ++j, v, sockets[v]));
+                  Sockets.addInput(++j, v, node);
                 });
+                for (let k = 0; k < node.data.addInputs; k++)
+                  Sockets.addInput(++j, node.data.image.add_input, node);
                 j = 0;
                 image.outputs.forEach(v => {
-                  sockets[v] = sockets[v] || new CustomSocket(v);
-                  node.addOutput(new Rete.Output("o/" + ++j, v, sockets[v]));
+                  Sockets.addOutput(++j, v, node);
                 });
+                for (let k = 0; k < node.data.addOutputs; k++)
+                  Sockets.addOutput(++j, node.data.image.add_output, node);
 
                 node.data.displayName = image.name.split("/").slice(-1)[0];
               }

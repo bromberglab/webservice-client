@@ -3,6 +3,7 @@ import Socket from "./socket.vue";
 import DatasetDropdown from "./dataset-dropdown.vue";
 import Events from "src/services/events";
 import Api from "src/services/api";
+import Sockets from "src/services/sockets";
 
 export default {
   mixins: [mixin],
@@ -26,6 +27,44 @@ export default {
       }).then(r => {
         window.location.href = r.data.url;
       });
+    },
+    inputsPlus() {
+      let i = this.inputs();
+      if (this.canAddInput) {
+        i.push({
+          isAdd: true,
+          socket: { name: this.node.data.image.add_input }
+        });
+      }
+      return i;
+    },
+    addInput() {
+      Sockets.addInput(
+        this.inputsPlus().length,
+        this.node.data.image.add_input,
+        this.node
+      );
+      this.node.data.addInputs++;
+      this.$forceUpdate();
+    },
+    outputsPlus() {
+      let o = this.outputs();
+      if (this.canAddOutput) {
+        o.push({
+          isAdd: true,
+          socket: { name: this.node.data.image.add_output }
+        });
+      }
+      return o;
+    },
+    addOutput() {
+      Sockets.addOutput(
+        this.outputsPlus().length,
+        this.node.data.image.add_output,
+        this.node
+      );
+      this.node.data.addOutputs++;
+      this.$forceUpdate();
     }
   },
   mounted() {
@@ -103,6 +142,14 @@ export default {
     tier() {
       if (this.isDataset) return 2;
       return this.node.data.image.labels.tier || 1;
+    },
+    canAddInput() {
+      if (this.isDataset) return false;
+      return this.node.data.image.add_input || false;
+    },
+    canAddOutput() {
+      if (this.isDataset) return false;
+      return this.node.data.image.add_output || false;
     }
   }
 };

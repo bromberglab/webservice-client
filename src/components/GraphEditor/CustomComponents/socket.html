@@ -2,4 +2,7 @@
   class="socket"
   :class="[type, used ? 'used' : '']"
   :title="socket.name"
-></div>
+  @click="isAdd && $emit('click')"
+>
+  <div v-if="isAdd"><font-awesome-icon icon="plus" /></div>
+</div>

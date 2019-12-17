@@ -14,7 +14,7 @@
   <!-- Outputs-->
   <div
     class="output"
-    v-for="(output, i) in outputs()"
+    v-for="(output, i) in outputsPlus()"
     :key="node.id + '/o/' + i"
   >
     <div class="output-title" v-if="!isDataset">{{ output.name }}</div>
@@ -24,6 +24,14 @@
       type="output"
       :socket="output.socket"
       :used="output.connections.length > 0"
+      v-if="!output.isAdd"
+    ></Socket>
+    <Socket
+      :isAdd="true"
+      type="output"
+      :socket="output.socket"
+      v-if="output.isAdd"
+      @click="addOutput"
     ></Socket>
   </div>
   <!-- Controls-->
@@ -34,14 +42,30 @@
     :key="node.id + '/c/' + i"
   ></div>
   <!-- Inputs-->
-  <div class="input" v-for="(input, i) in inputs()" :key="node.id + '/i/' + i">
+  <div
+    class="input"
+    v-for="(input, i) in inputsPlus()"
+    :key="node.id + '/i/' + i"
+  >
     <Socket
       v-socket:input="input"
       type="input"
       :socket="input.socket"
       :used="input.connections.length > 0"
+      v-if="!input.isAdd"
     ></Socket>
-    <div class="input-title" v-show="!input.showControl()" v-if="!isDataset">
+    <Socket
+      :isAdd="true"
+      type="input"
+      :socket="input.socket"
+      v-if="input.isAdd"
+      @click="addInput"
+    ></Socket>
+    <div
+      class="input-title"
+      v-show="!input.showControl()"
+      v-if="!isDataset && !input.isAdd"
+    >
       {{ input.name }}
     </div>
     <dataset-dropdown :node="dataNode" v-if="isDataset"></dataset-dropdown>
@@ -49,6 +73,7 @@
       class="input-control"
       v-show="input.showControl()"
       v-control="input.control"
+      v-if="!input.isAdd"
     ></div>
   </div>
   <div

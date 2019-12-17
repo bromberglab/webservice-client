@@ -1,3 +1,3 @@
 export default {
-  props: ["type", "socket", "used"]
+  props: ["type", "socket", "used", "isAdd"]
 };
