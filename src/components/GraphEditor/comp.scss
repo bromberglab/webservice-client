@@ -169,7 +169,8 @@
 
   &:not(.edit) {
     input,
-    button {
+    button,
+    .socket {
       pointer-events: none;
     }
 
