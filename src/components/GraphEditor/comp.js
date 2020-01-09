@@ -261,7 +261,9 @@ export default {
         });
       });
 
-      withConnections.forEach(node => this.editor.trigger("arrange", { node }));
+      withConnections.forEach(node =>
+        this.editor.trigger("arrange", { node, depth: 128 })
+      );
       AreaPlugin.zoomAt(this.editor);
     },
     storeState() {
