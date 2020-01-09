@@ -2,6 +2,9 @@
   class="node"
   :class="{selected: selected(), filtered: textFilteredOut, secondary: tier == 2, tertiary: tier == 3}"
 >
+  <div class="bar">
+    <div class="bar-content" :style="{ width: progress + '%' }"></div>
+  </div>
   <div class="title">
     {{ node.data.displayName }}
     <font-awesome-icon

@@ -65,6 +65,25 @@ export default {
       );
       this.node.data.addOutputs++;
       this.$forceUpdate();
+    },
+    monitorProgress() {
+      if (this.finished) {
+        this.progress = 100;
+      } else if (!this.running) {
+        this.progress = 0;
+      } else {
+        Api.get("job", { name: this.node.id }).then(j => {
+          if (j.data.parallel_runs > 0) {
+            this.progress = ~~(
+              (100 * j.data.finished_runs) /
+              j.data.parallel_runs
+            );
+          }
+        });
+        setTimeout(() => {
+          this.monitorProgress();
+        }, 5000);
+      }
     }
   },
   mounted() {
@@ -80,6 +99,8 @@ export default {
           } else {
             this.success = true;
           }
+
+          this.monitorProgress();
         }
       });
       Events.$on("run-all", () => {
@@ -88,6 +109,7 @@ export default {
       if (this.isDataset) {
         this.dataNode = this.node;
       }
+      this.monitorProgress();
     } else {
       if (this.node.name.startsWith("from_data")) {
         Events.$on("node-filter/inputs", v => {
@@ -127,7 +149,8 @@ export default {
       success: false,
       buttonFilteredOut: false,
       textFilteredOut: false,
-      dataNode: null
+      dataNode: null,
+      progress: 0
     };
   },
   computed: {
