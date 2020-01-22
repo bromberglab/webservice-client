@@ -37,7 +37,11 @@
       class="update-resources"
       v-if="workflow && meta.finished && !meta.some_failed && !meta.updated_resources"
     >
-      <b-button @click="updateResources" variant="outline-warning">
+      <b-button
+        @click="updateResources"
+        variant="outline-warning"
+        href="JavaScript:void(0)"
+      >
         <font-awesome-icon icon="tachometer-alt" class="mr-2" />Update Resource
         Quotas
       </b-button>
