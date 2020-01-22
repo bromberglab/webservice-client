@@ -33,6 +33,14 @@
   </div>
   <div class="rete-container">
     <div class="node-editor"></div>
+    <div
+      class="update-resources"
+      v-if="workflow && meta.finished && !meta.some_failed && !meta.updated_resources"
+    >
+      <a href="JavaScript:void(0)" @click="updateResources">
+        Update node resource requests
+      </a>
+    </div>
   </div>
   <div v-if="!workflow" class="filter-bar">
     <b-button-group size="sm">

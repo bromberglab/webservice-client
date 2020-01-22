@@ -59,6 +59,7 @@
   }
 
   .rete-container {
+    position: relative;
     flex: 1 1 auto;
     overflow: hidden;
     .node-editor {
@@ -177,5 +178,15 @@
     .node {
       cursor: default;
     }
+  }
+
+  .update-resources {
+    a {
+      color: black;
+      text-decoration: underline;
+    }
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }

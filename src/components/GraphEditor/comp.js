@@ -306,6 +306,12 @@ export default {
       this.shared = true;
       this.$copyText(window.location.href);
       Api.post("share_workflow", { pk: this.meta.pk });
+    },
+    updateResources() {
+      let pk = this.workflow.pk;
+      Api.post("update_resources", { pk }).then(() => {
+        window.location.reload();
+      });
     }
   },
   mounted() {
