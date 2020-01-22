@@ -37,9 +37,10 @@
       class="update-resources"
       v-if="workflow && meta.finished && !meta.some_failed && !meta.updated_resources"
     >
-      <a href="JavaScript:void(0)" @click="updateResources">
-        Update node resource requests
-      </a>
+      <b-button @click="updateResources" variant="outline-warning">
+        <font-awesome-icon icon="tachometer-alt" class="mr-2" />Update Resource
+        Quotas
+      </b-button>
     </div>
   </div>
   <div v-if="!workflow" class="filter-bar">
