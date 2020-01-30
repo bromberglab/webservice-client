@@ -119,14 +119,14 @@
     top: 0;
     right: 0;
     width: 100%;
-    height: 0.4em;
+    height: 1em;
     border-radius: ($ratio * 10em);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     overflow: hidden;
   }
   .bar-content {
-    height: 100%;
+    height: 0.4em;
     background-color: $gray-100;
     opacity: 0.8;
   }
