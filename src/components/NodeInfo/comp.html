@@ -10,6 +10,19 @@
       <tbody>
         <tr>
           <td>
+            Resources:
+          </td>
+          <td>
+            <span v-if="meta.resource_exhaustion">
+              exhausted <font-awesome-icon icon="skull-crossbones" />
+            </span>
+            <span v-if="!meta.resource_exhaustion">
+              sufficient
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>
             Max CPU:
           </td>
           <td v-if="meta.max_cpu >= 0">
