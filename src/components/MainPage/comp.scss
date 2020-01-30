@@ -113,7 +113,7 @@ input.read-only,
   left: 0;
   z-index: 9999;
 }
-#app.matrix {
+#mainpage.matrix {
   &.two {
     $green: #00ff41;
     input,
@@ -221,7 +221,7 @@ input.read-only,
   }
 }
 
-#app {
+#mainpage {
   .bm-burger-button {
     top: 18px;
   }
