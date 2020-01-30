@@ -94,6 +94,7 @@ export default {
           this.running = !d.finished && d.scheduled; // 'scheduled' on the server means 'running' in vue.
           this.scheduled = !d.scheduled; // 'scheduled' in vue means not yet 'running', so not 'scheduled' on server.
           this.finished = d.finished;
+          this.exhausted = d.resource_exhaustion;
           if (this.node.name.startsWith("node/")) {
             this.success = d.status == "succeeded";
           } else {
@@ -147,6 +148,7 @@ export default {
       scheduled: false,
       finished: false,
       success: false,
+      exhausted: false,
       buttonFilteredOut: false,
       textFilteredOut: false,
       dataNode: null,

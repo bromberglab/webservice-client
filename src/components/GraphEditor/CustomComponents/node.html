@@ -109,8 +109,11 @@
         class="text-danger"
         fixed-width
         icon="exclamation-circle"
-        v-if="!success"
+        v-if="!success && !exhausted"
       />
+      <div v-if="!success && exhausted" class="bg-danger">
+        <font-awesome-icon fixed-width icon="skull-crossbones" />
+      </div>
     </div>
     <div class="hover" v-if="!isDataset">
       <font-awesome-icon class="text-primary" fixed-width icon="info-circle" />
