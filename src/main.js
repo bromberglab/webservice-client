@@ -47,7 +47,7 @@ library.add(far);
 
 new Vue({
   render: h => h(App)
-}).$mount("#app");
+}).$mount("#mountpoint");
 
 ServerEvents.listen();
 Notifications.listen();
