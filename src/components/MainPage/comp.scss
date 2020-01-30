@@ -113,115 +113,122 @@ input.read-only,
   left: 0;
   z-index: 9999;
 }
-#mainpage.matrix {
-  &.two {
-    $green: #00ff41;
-    input,
-    .btn,
-    .node,
-    .socket,
-    .toast,
-    .toast-header {
-      background-color: black;
-      border: 1px solid $green;
+#mainpage {
+  &.matrix {
+    &.two {
+      $green: #00ff41;
+      input,
+      .btn,
+      .node,
+      .socket,
+      .toast,
+      .toast-header {
+        background-color: black;
+        border: 1px solid $green;
+      }
+      .socket::after,
+      .bm-burger-bars,
+      .bm-cross {
+        background-color: $green;
+      }
+      .bm-menu {
+        background-color: black;
+      }
+      .connection path {
+        stroke: $green;
+      }
+      * {
+        color: $green !important;
+      }
     }
-    .socket::after,
+    img.overlay {
+      display: initial !important;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      z-index: 10000;
+      transition: opacity 0.5s;
+      opacity: 0;
+      &.one {
+        opacity: 1;
+      }
+      &.two {
+        opacity: 0;
+      }
+      &.three {
+        display: none !important;
+      }
+    }
+    .black-overlay {
+      opacity: 1;
+      &.two {
+        opacity: 0;
+      }
+    }
+    img.underlay.two {
+      display: initial !important;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+
+    * {
+      scrollbar-face-color: #333;
+      scrollbar-base-color: #333;
+      scrollbar-3dlight-color: #333;
+      scrollbar-highlight-color: #333;
+      scrollbar-track-color: #000;
+      scrollbar-arrow-color: #000;
+      scrollbar-shadow-color: #333;
+      scrollbar-dark-shadow-color: #333;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 3px;
+    }
+    ::-webkit-scrollbar-button {
+      background-color: #333;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #333;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background-color: #000;
+    }
+    ::-webkit-scrollbar-thumb {
+      height: 50px;
+      background-color: #333;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-corner {
+      background-color: #333;
+    }
+    ::-webkit-resizer {
+      background-color: #333;
+    }
+
+    .rete-editor {
+      background: transparent;
+    }
+    .dock {
+      background-color: #0003;
+    }
+  }
+
+  &.lightburger {
     .bm-burger-bars,
     .bm-cross {
-      background-color: $green;
+      background-color: white;
     }
-    .bm-menu {
-      background-color: black;
-    }
-    .connection path {
-      stroke: $green;
-    }
-    * {
-      color: $green !important;
-    }
-  }
-  img.overlay {
-    display: initial !important;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    z-index: 10000;
-    transition: opacity 0.5s;
-    opacity: 0;
-    &.one {
-      opacity: 1;
-    }
-    &.two {
-      opacity: 0;
-    }
-    &.three {
-      display: none !important;
-    }
-  }
-  .black-overlay {
-    opacity: 1;
-    &.two {
-      opacity: 0;
-    }
-  }
-  img.underlay.two {
-    display: initial !important;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
   }
 
-  * {
-    scrollbar-face-color: #333;
-    scrollbar-base-color: #333;
-    scrollbar-3dlight-color: #333;
-    scrollbar-highlight-color: #333;
-    scrollbar-track-color: #000;
-    scrollbar-arrow-color: #000;
-    scrollbar-shadow-color: #333;
-    scrollbar-dark-shadow-color: #333;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 3px;
-  }
-  ::-webkit-scrollbar-button {
-    background-color: #333;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #333;
-  }
-  ::-webkit-scrollbar-track-piece {
-    background-color: #000;
-  }
-  ::-webkit-scrollbar-thumb {
-    height: 50px;
-    background-color: #333;
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-corner {
-    background-color: #333;
-  }
-  ::-webkit-resizer {
-    background-color: #333;
-  }
-
-  .rete-editor {
-    background: transparent;
-  }
-  .dock {
-    background-color: #0003;
-  }
-}
-
-#mainpage {
   .bm-burger-button {
     top: 18px;
   }

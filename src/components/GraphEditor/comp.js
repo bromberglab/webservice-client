@@ -111,6 +111,7 @@ export default {
       data = Api.legacySupport(data);
       if (this.workflow) {
         Object.values(data.nodes).map(n => (n.data.readOnly = true));
+        Events.$emit("burger-color", "light");
       }
 
       this.editor.fromJSON(data);
@@ -367,7 +368,11 @@ export default {
     });
   },
   beforeDestroy() {
-    if (!this.workflow) this.storeState();
+    if (!this.workflow) {
+      this.storeState();
+    } else {
+      Events.$emit("burger-color", "dark");
+    }
   },
   components: {
     NodeSettings,

@@ -3,7 +3,7 @@
   class="full-height"
   @dragenter="dragOn"
   @dragleave="dragOff"
-  :class="{ matrix: overlayStage > 0, two: overlayStage > 1 }"
+  :class="{ matrix: overlayStage > 0, two: overlayStage > 1, lightburger }"
 >
   <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
   <div class="slide-overlay" :class="{sidebarOpen}"></div>

@@ -99,7 +99,8 @@ export default {
       sidebarOpen: false,
       serverUri: Config.serverUri,
       Auth,
-      routes
+      routes,
+      lightburger: 0
     };
   },
   watch: {
@@ -122,6 +123,9 @@ export default {
     } else if (!Auth.staff) {
       this.routes.splice(5, 1);
     }
+    Events.$on("burger-color", v => {
+      this.lightburger = v == "light";
+    });
   },
   mounted() {
     Api.get("show_cookie_info").then(response => {
