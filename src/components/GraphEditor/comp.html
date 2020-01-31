@@ -95,5 +95,21 @@
       required
     >
     </b-form-input>
+    <template v-slot:modal-footer="{ ok, cancel, hide }">
+      <div class="w-100">
+        <b-button
+          class="float-left"
+          variant="outline-success"
+          @click="hide(); createAPI()"
+          >Create API</b-button
+        >
+        <b-button variant="primary" class="float-right ml-2" @click="ok">
+          OK
+        </b-button>
+        <b-button variant="secondary" class="float-right" @click="cancel">
+          Cancel
+        </b-button>
+      </div>
+    </template>
   </b-modal>
 </div>

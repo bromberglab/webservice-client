@@ -313,6 +313,18 @@ export default {
       Api.post("update_resources", { pk }).then(() => {
         window.location.reload();
       });
+    },
+    createAPI() {
+      this.$bvModal
+        .msgBoxConfirm("This is an advanced developer feature. Continue?")
+        .then(value => {
+          if (!value) return;
+          Api.post("api_workflow", {
+            pk: this.workflow.pk
+          }).then(r => {
+            this.$bvModal.msgBoxOk(JSON.stringify(r.data, null, 2));
+          });
+        });
     }
   },
   mounted() {
