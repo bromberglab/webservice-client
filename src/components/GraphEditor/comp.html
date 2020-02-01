@@ -112,4 +112,7 @@
       </div>
     </template>
   </b-modal>
+  <b-modal v-if="workflow" id="api-flow-modal" title="API">
+    <pre class="code-display">{{apiFlow}}</pre>
+  </b-modal>
 </div>

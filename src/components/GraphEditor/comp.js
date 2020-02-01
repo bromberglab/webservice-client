@@ -39,7 +39,8 @@ export default {
         { caption: "Nodes", state: true }
       ],
       fileTypes: [],
-      shared: false
+      shared: false,
+      apiFlow: ""
     };
   },
   watch: {
@@ -322,7 +323,8 @@ export default {
           Api.post("api_workflow", {
             pk: this.workflow.pk
           }).then(r => {
-            this.$bvModal.msgBoxOk(JSON.stringify(r.data, null, 2));
+            this.apiFlow = JSON.stringify(r.data, null, 2);
+            this.$bvModal.show("api-flow-modal");
           });
         });
     }
