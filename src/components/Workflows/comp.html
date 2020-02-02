@@ -23,7 +23,14 @@
           <timeago :datetime="w.created_at"></timeago>
         </b-td>
         <b-td>
-          <a href="JavaScript:void(0)" @click="setWorkflow(w)">
+          <a
+            href="JavaScript:void(0)"
+            @click="loadTemplate(w)"
+            v-if="!w.should_run"
+          >
+            {{ w.name }}
+          </a>
+          <a :href='"#/workflows/" + w.pk' v-if="w.should_run">
             {{ w.name }}
           </a>
         </b-td>
