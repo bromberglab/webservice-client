@@ -15,12 +15,12 @@ import ScaleLoader from "vue-spinner/src/ScaleLoader.vue";
 import { Slide } from "vue-burger-menu";
 
 let routes = [
-  [GraphEditor, "Editor"],
-  [Workflows, "Workflows"],
-  [UploadPage, "Upload"],
-  [Images, "Images"],
-  [Notifications, "Notifications"],
-  [AdminFrame, "Admin"],
+  [GraphEditor, "Editor", 1],
+  [Workflows, "Workflows", 1],
+  [UploadPage, "Upload", 1],
+  [Images, "Images", 1],
+  [Notifications, "Notifications", 1],
+  [AdminFrame, "Admin", 2],
   [DocsFrame, "Docs"]
 ];
 
@@ -29,7 +29,8 @@ routes = routes.map(r => {
     path: r[1].toLowerCase().replace(" ", "-"),
     component: r[0],
     title: r[1],
-    hidden: r.length > 2 && r[2],
+    hidden: false,
+    authLevel: r.length > 2 ? r[2] : 0,
     children: [
       {
         path: ":path(.*)"
@@ -118,11 +119,11 @@ export default {
     Events.$on("stop-drag", () => {
       this.dragActive = false;
     });
-    if (!Auth.authenticated) {
-      this.routes.splice(0, 6);
-    } else if (!Auth.staff) {
-      this.routes.splice(5, 1);
-    }
+
+    const level = Auth.authenticated ? (Auth.staff ? 2 : 1) : 0;
+    this.routes.map(r => {
+      r.hidden = r.authLevel > level;
+    });
     Events.$on("burger-color", v => {
       this.lightburger = v == "light";
     });
