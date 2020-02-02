@@ -6,6 +6,7 @@ import NotificationPopup from "../NotificationPopup/comp.vue";
 import AdminFrame from "../AdminFrame/comp.vue";
 import DocsFrame from "../DocsFrame/comp.vue";
 import Images from "../Images/comp.vue";
+import DataPage from "../DataPage/comp.vue";
 import VueRouter from "vue-router";
 import Events from "src/services/events";
 import Api from "src/services/api";
@@ -18,6 +19,7 @@ let routes = [
   [GraphEditor, "Editor", 1],
   [Workflows, "Workflows", 1],
   [UploadPage, "Upload", 1],
+  [DataPage, "Data", 1],
   [Images, "Images", 1],
   [Notifications, "Notifications", 1],
   [AdminFrame, "Admin", 2],
