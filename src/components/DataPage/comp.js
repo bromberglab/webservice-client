@@ -1,6 +1,16 @@
 import Api from "src/services/api";
+
 export default {
-  methods: {},
+  methods: {
+    deleteRow(r) {
+      this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
+        if (!value) return;
+        Api.delete("uploads/" + r.item.uuid).then(() => {
+          window.location.reload();
+        });
+      });
+    }
+  },
   mounted() {
     Api.get("uploads").then(r => {
       this.items = r.data;
@@ -36,7 +46,8 @@ export default {
             return ~~v + ["", "K", "M", "G", "T", "P"][i];
           },
           sortable: 1
-        }
+        },
+        { key: "actions" }
       ],
       items: []
     };

@@ -1,5 +1,12 @@
 <div class="host fluid-container">
   <div>
-    <b-table striped hover :items="items" :fields="fields"></b-table>
+    <b-table striped hover :items="items" :fields="fields">
+      <template v-slot:cell(actions)="row">
+        <b-button size="sm" @click="deleteRow(row)" class="mr-2">
+          Delete
+        </b-button>
+      </template>
+    </b-table>
   </div>
+  <span v-if="!items.count">(empty)</span>
 </div>
