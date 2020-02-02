@@ -9,6 +9,14 @@ export default {
           window.location.reload();
         });
       });
+    },
+    download(r) {
+      Api.post("create_download", {
+        name: r.item.name,
+        type: r.item.file_type
+      }).then(r => {
+        window.location.href = r.data.url;
+      });
     }
   },
   mounted() {
