@@ -44,15 +44,17 @@
             class="read-only"
           ></b-form-checkbox>
         </b-td>
-        <b-td v-if="w.should_run">
+        <b-td>
           <b-form-checkbox
+            v-if="w.should_run"
             switch
             :checked="w.finished"
             class="read-only"
           ></b-form-checkbox>
         </b-td>
-        <b-td v-if="w.should_run">
+        <b-td>
           <b-form-checkbox
+            v-if="w.should_run"
             switch
             :checked="!w.some_failed"
             :state="!w.some_failed"
@@ -61,7 +63,7 @@
             class="read-only"
           ></b-form-checkbox>
         </b-td>
-        <b-td v-if="w.should_run">
+        <b-td>
           <b-button variant="danger" @click="deleteFlow(w.pk)">
             Delete
           </b-button>
