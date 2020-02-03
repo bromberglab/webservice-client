@@ -16,6 +16,9 @@
       <b-th>
         Status
       </b-th>
+      <b-th>
+        Actions
+      </b-th>
     </b-thead>
     <b-tbody>
       <b-tr v-for="w in workflows" :key="w.pk">
@@ -57,6 +60,11 @@
             v-b-tooltip.hover
             class="read-only"
           ></b-form-checkbox>
+        </b-td>
+        <b-td v-if="w.should_run">
+          <b-button variant="danger" @click="deleteFlow(w.pk)">
+            Delete
+          </b-button>
         </b-td>
       </b-tr>
     </b-tbody>

@@ -37,6 +37,14 @@ export default {
     loadTemplate(w) {
       Store.graphLoadTemplate = w.name;
       this.$router.push("/editor/");
+    },
+    deleteFlow(pk) {
+      this.$bvModal.msgBoxConfirm("Are you sure?").then(value => {
+        if (!value) return;
+        Api.delete(`workflows/${pk}`).then(() => {
+          window.location.reload();
+        });
+      });
     }
   },
   data() {
