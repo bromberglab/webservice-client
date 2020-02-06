@@ -35,7 +35,7 @@
     <table class="w-100 mt-4">
       <tbody>
         <tr>
-          <td>Params</td>
+          <td>Params: <help-link page="labels" class="ml-2" /></td>
           <td>
             <b-form-input
               v-model="params"
@@ -44,19 +44,21 @@
           </td>
         </tr>
         <tr>
-          <td>CPU</td>
+          <td>CPU: <help-link page="resources/#units" class="ml-2" /></td>
           <td>
             <b-form-input v-model="cpu" placeholder="100m"></b-form-input>
           </td>
         </tr>
         <tr>
-          <td>Memory</td>
+          <td>Memory: <help-link page="resources/#units" class="ml-2" /></td>
           <td>
             <b-form-input v-model="memory" placeholder="100Mi"></b-form-input>
           </td>
         </tr>
         <tr>
-          <td>Parallelism</td>
+          <td>
+            Parallelism: <help-link page="labels/#parallelism" class="ml-2" />
+          </td>
           <td>
             <b-form-input v-model="parallelism" type="range"></b-form-input>
           </td>
