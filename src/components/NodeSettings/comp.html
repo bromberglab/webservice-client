@@ -3,8 +3,68 @@
   title="Settings"
   :cancel-disabled="true"
   @hidden="dismiss"
+  size="xl"
 >
-  <div v-if="node">
+  <b-form-group class="text-center">
+    <b-form-checkbox-group
+      v-model="selected"
+      :options="['simple', 'advanced']"
+      button-variant="outline-info"
+      buttons
+    ></b-form-checkbox-group>
+  </b-form-group>
+  <div v-if="node && simpleMode">
+    <h3 class="ml-3 mb-4 display-5">
+      <font-awesome-icon class="mr-1" :icon="['far', 'image']" /> {{
+      node.node.data.image.name }}
+    </h3>
+    <h4
+      class="ml-3 lead text-secondary"
+      v-if="node.node.data.image.labels.maintainer"
+    >
+      <font-awesome-icon class="ml-1 mr-2" :icon="['fas', 'user']" /> {{
+      node.node.data.image.labels.maintainer }}
+    </h4>
+    <h4
+      class="ml-3 lead text-secondary font-italic"
+      v-if="node.node.data.image.labels.description"
+    >
+      <font-awesome-icon class="ml-1 mr-2" :icon="['fas', 'quote-left']" /> {{
+      node.node.data.image.labels.description }}
+    </h4>
+    <table class="w-100 mt-4">
+      <tbody>
+        <tr>
+          <td>Params</td>
+          <td>
+            <b-form-input
+              v-model="params"
+              placeholder="i.e. '--threads 1'"
+            ></b-form-input>
+          </td>
+        </tr>
+        <tr>
+          <td>CPU</td>
+          <td>
+            <b-form-input v-model="cpu" placeholder="100m"></b-form-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Memory</td>
+          <td>
+            <b-form-input v-model="memory" placeholder="100Mi"></b-form-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Parallelism</td>
+          <td>
+            <b-form-input v-model="parallelism" type="range"></b-form-input>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div v-if="node && !simpleMode">
     <v-jsoneditor
       @input="jsonEditorChanged"
       :plus="false"

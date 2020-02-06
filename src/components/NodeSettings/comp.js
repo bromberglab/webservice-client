@@ -5,7 +5,14 @@ const debounce = require("debounce");
 export default {
   methods: {
     applySettings() {
-      this.node.node.data = this.jsonEditor;
+      if (!this.simpleMode) this.node.node.data = this.jsonEditor;
+      else {
+        this.node.node.data.image.labels.parameters = this.params;
+        this.node.node.data.image.labels.cpu = this.cpu.replace(" ", "");
+        this.node.node.data.image.labels.memory = this.memory.replace(" ", "");
+        this.node.node.data.image.labels.parallelism =
+          "" + this.parallelism / 100.0;
+      }
     },
     showModal() {
       this.$bvModal.show("node-settings-modal");
@@ -25,11 +32,11 @@ export default {
       this.jsonEditor = v;
     },
     render() {
-      this.nodeMode.input = this.node.node.name.startsWith("from_data");
-      this.nodeMode.output = this.node.node.name.startsWith("to_data");
-      this.nodeMode.node = this.node.node.name.startsWith("node/");
-      this.nameOptions = [];
-      this.selectedName = null;
+      this.params = this.node.node.data.image.labels.parameters || "";
+      this.cpu = this.node.node.data.image.labels.cpu || "";
+      this.memory = this.node.node.data.image.labels.memory || "";
+      this.parallelism =
+        (this.node.node.data.image.labels.parallelism || 1) * 100.0;
     },
     outputNameChange: debounce(function(v) {
       this.node.node.data.data_name = v;
@@ -43,11 +50,13 @@ export default {
       nodeMode: {
         input: false,
         output: false,
-        node: false
+        node: true
       },
       nameOptions: [],
       selectedName: null,
-      outputName: null
+      outputName: null,
+      selected: ["simple"],
+      simpleMode: true
     };
   },
   mounted() {
@@ -70,6 +79,16 @@ export default {
       if (v) {
         this.node.node.data.data_name = v;
       }
+    },
+    selected(newValue, oldValue) {
+      if (newValue.length === 0) {
+        this.selected = oldValue;
+        return;
+      }
+      newValue.forEach(v => {
+        this.simpleMode = v === "simple";
+        if (!oldValue.includes(v)) this.selected = [v];
+      });
     }
   }
 };
