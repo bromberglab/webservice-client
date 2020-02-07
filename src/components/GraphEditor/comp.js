@@ -110,7 +110,7 @@ export default {
     applyWorkflow(data) {
       this.updateMeta();
       data = Api.legacySupport(data);
-      data = Api.refreshIDs(data);
+      if (!this.workflow) data = Api.refreshIDs(data);
       if (this.workflow) {
         Object.values(data.nodes).map(n => (n.data.readOnly = true));
         Events.$emit("burger-color", "light");
