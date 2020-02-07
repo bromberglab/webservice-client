@@ -118,8 +118,10 @@ export default {
     rerender() {
       let node = this.node;
       setTimeout(() => {
-        this.editor && this.editor.view.updateConnections({ node });
-        this.editor.trigger("mousemove", { ...this.editor.view.area.mouse });
+        if (this.editor) {
+          this.editor.view.updateConnections({ node });
+          this.editor.trigger("mousemove", { ...this.editor.view.area.mouse });
+        }
       }, 0);
     },
     nameChange: debounce(function(v) {
