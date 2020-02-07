@@ -47,5 +47,34 @@ export default {
 
     nodes.id = Config.reteId;
     return nodes;
+  },
+
+  idMapping(map, old) {
+    if (map[old] === undefined) {
+      map[old] = Object.keys(map).length + 1;
+    }
+    return map[old];
+  },
+  refreshIDs(nodes) {
+    let refreshed = {};
+    let idMap = {};
+
+    for (const [i, n] of Object.entries(nodes.nodes)) {
+      for (const [_, p] of Object.entries(n.inputs)) {
+        p.connections.forEach(c => {
+          c.node = this.idMapping(idMap, c.node);
+        });
+      }
+      for (const [_, p] of Object.entries(n.outputs)) {
+        p.connections.forEach(c => {
+          c.node = this.idMapping(idMap, c.node);
+        });
+      }
+      n.id = this.idMapping(idMap, i);
+      refreshed["" + this.idMapping(idMap, i)] = n;
+    }
+
+    nodes.nodes = refreshed;
+    return nodes;
   }
 };
