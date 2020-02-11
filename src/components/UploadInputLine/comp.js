@@ -30,7 +30,6 @@ export default {
       if (isFinished) return Api.post("finish_upload");
       return Api.post("my_upload", {
         file_type: this.fileType,
-        job_count: this.selectedJobCount.value,
         name: this.uploadName
       });
     },
@@ -93,9 +92,6 @@ export default {
       if (val === null) return;
       this.fileType = val.file_type;
       this.uploadName = val.display_name;
-      this.selectedJobCount = jobCounts.filter(
-        v => v.value == val.job_count
-      )[0];
     }
   }
 };
