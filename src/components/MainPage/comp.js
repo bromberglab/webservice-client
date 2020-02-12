@@ -7,6 +7,7 @@ import AdminFrame from "../AdminFrame/comp.vue";
 import DocsFrame from "../DocsFrame/comp.vue";
 import Images from "../Images/comp.vue";
 import DataPage from "../DataPage/comp.vue";
+import LoginModal from "../LoginModal/comp.vue";
 import VueRouter from "vue-router";
 import Events from "src/services/events";
 import Api from "src/services/api";
@@ -142,6 +143,7 @@ export default {
   components: {
     "vue-spinner": ScaleLoader,
     NotificationPopup,
-    Slide
+    Slide,
+    LoginModal
   }
 };

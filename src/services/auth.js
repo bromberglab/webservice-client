@@ -12,5 +12,14 @@ export default {
 
       then();
     });
-  }
+  },
+  showLogin() {
+    this.loginModal.showLogin();
+  },
+  logout() {
+    Api.post("logout").then(() => {
+      window.location.reload();
+    });
+  },
+  loginModal: {}
 };

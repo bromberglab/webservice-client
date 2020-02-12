@@ -5,6 +5,7 @@
   @dragleave="dragOff"
   :class="{ matrix: overlayStage > 0, two: overlayStage > 1, lightburger }"
 >
+  <login-modal />
   <vue-spinner :loading="loading > 0" class="main-spinner"></vue-spinner>
   <div class="slide-overlay" :class="{sidebarOpen}"></div>
   <img
@@ -33,14 +34,16 @@
     </router-link>
     <a
       class="nav-link"
-      :href="serverUri + '/accounts/login?next=/'"
+      href="JavaScript:void(0)"
       v-if="!Auth.authenticated"
+      @click="Auth.showLogin();"
     >
       Login
     </a>
     <a
       class="nav-link"
-      :href="serverUri + '/accounts/logout'"
+      href="JavaScript:void(0)"
+      @click="Auth.logout();"
       v-if="Auth.authenticated"
     >
       Logout
