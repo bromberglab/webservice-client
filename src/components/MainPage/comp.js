@@ -92,6 +92,16 @@ export default {
       setTimeout(() => {
         this.overlayStage = 3;
       }, 12500);
+    },
+    checkAuth() {
+      let route = this.$route;
+      let r = routes.filter(
+        r => route.matched[1].components.default == r.component
+      )[0];
+
+      if (r.authLevel > this.level) {
+        Auth.showLogin();
+      }
     }
   },
   data() {
@@ -104,12 +114,16 @@ export default {
       serverUri: Config.serverUri,
       Auth,
       routes,
-      lightburger: 0
+      lightburger: 0,
+      level: -1
     };
   },
   watch: {
     dragActive(v) {
       Events.$emit("drag-active", v);
+    },
+    $route() {
+      this.checkAuth();
     }
   },
   created() {
@@ -123,9 +137,9 @@ export default {
       this.dragActive = false;
     });
 
-    const level = Auth.authenticated ? (Auth.staff ? 2 : 1) : 0;
+    this.level = Auth.authenticated ? (Auth.staff ? 2 : 1) : 0;
     this.routes.map(r => {
-      r.hidden = r.authLevel > level;
+      r.hidden = r.authLevel > this.level;
     });
     Events.$on("burger-color", v => {
       this.lightburger = v == "light";
@@ -139,6 +153,7 @@ export default {
     });
 
     Events.$on("enable-overlay", this.enableOverlay);
+    this.checkAuth();
   },
   components: {
     "vue-spinner": ScaleLoader,

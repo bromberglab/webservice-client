@@ -14,7 +14,7 @@
     :class="{ two: overlayStage > 1, three: overlayStage > 2 }"
     v-if="overlayStage > 0"
   />
-  <router-view id="page-wrap" class="text-center"></router-view>
+  <router-view id="page-wrap" class="text-center" />
   <Slide
     :noOverlay="true"
     @openMenu="sidebarOpen = true"
