@@ -1,6 +1,7 @@
 import UploadPage from "../UploadPage/comp.vue";
 import GraphEditor from "../GraphEditor/comp.vue";
 import Workflows from "../Workflows/comp.vue";
+import ApiWorkflows from "../ApiWorkflows/comp.vue";
 import Notifications from "../Notifications/comp.vue";
 import NotificationPopup from "../NotificationPopup/comp.vue";
 import AdminFrame from "../AdminFrame/comp.vue";
@@ -19,6 +20,7 @@ import { Slide } from "vue-burger-menu";
 let routes = [
   [GraphEditor, "Editor", 1],
   [Workflows, "Workflows", 1],
+  [ApiWorkflows, "API Workflows", 1],
   [UploadPage, "Upload", 1],
   [DataPage, "Data", 1],
   [Images, "Images", 1],
