@@ -75,7 +75,7 @@ export default {
       }, 0);
     },
     runFlow() {
-      let data = this.editor.toJSON();
+      let data = Api.prepareDataForRun(this.editor.toJSON());
       data.id = Config.reteVersion;
       Api.post("workflow_run", {
         name: this.saveName,
@@ -236,6 +236,18 @@ export default {
                   Sockets.addOutput(++j, node.data.image.add_output, node);
 
                 node.data.displayName = image.name.split("/").slice(-1)[0];
+
+                node.data.image.tags = image.tags;
+                node.data.image.imported_tag =
+                  node.data.image.imported_tag || "latest";
+
+                node.data.image.latest_sha = image.tags.find(
+                  t => t.name == image.imported_tag
+                );
+                node.data.image.latest_sha =
+                  node.data.image.latest_sha && node.data.image.latest_sha.sha;
+                node.data.image.selected_sha =
+                  node.data.image.selected_sha || node.data.image.latest_sha;
               }
 
               worker() {

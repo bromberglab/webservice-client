@@ -76,5 +76,15 @@ export default {
 
     nodes.nodes = refreshed;
     return nodes;
+  },
+  prepareDataForRun(data) {
+    data = JSON.parse(JSON.stringify(data)); // otherwise the actual node data in rete is altered.
+    for (const [_, n] of Object.entries(data.nodes)) {
+      if (n.name.startsWith("node")) {
+        if (n.data.image.tags) delete n.data.image.tags;
+        if (n.data.image.latest_sha) delete n.data.image.latest_sha;
+      }
+    }
+    return data;
   }
 };

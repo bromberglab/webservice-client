@@ -168,6 +168,12 @@ export default {
       if (this.isDataset) return 2;
       return this.node.data.image.labels.tier || 1;
     },
+    outdated() {
+      if (this.isDataset) return false;
+      return (
+        this.node.data.image.selected_sha != this.node.data.image.latest_sha
+      );
+    },
     canAddInput() {
       if (this.isDataset) return false;
       return this.node.data.image.add_input || false;
