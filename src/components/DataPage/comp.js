@@ -31,7 +31,7 @@ export default {
         { key: "file_type", sortable: 1 },
         {
           key: "started_at",
-          label: "Time",
+          label: "Time [UTC]",
           formatter: v => {
             return v.slice(0, 16).replace("T", " at ");
           },
