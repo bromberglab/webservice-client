@@ -67,6 +67,7 @@ input.read-only,
 }
 
 .nav-link {
+  white-space: nowrap;
   color: darken($white, 20%);
   &.isActive {
     color: darken($white, 10%);
