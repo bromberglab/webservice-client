@@ -36,6 +36,7 @@ export default {
           },
           sortable: 1
         },
+        { key: "user" },
         { key: "actions" }
       ],
       items: []
