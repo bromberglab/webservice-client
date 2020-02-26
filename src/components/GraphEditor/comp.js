@@ -390,6 +390,10 @@ export default {
     this.editor.on("warn", e => {
       Notifications.warn("Workflow Editor:", e.message);
     });
+    this.editor.on("renderconnection", ({ el, _ }) => (el.style.zIndex = -2)); // z index
+    this.editor.on("rendernode", ({ el, _ }) => {
+      el.style.zIndex = -1;
+    });
     Events.$on("server-event/workflow-finished", r => {
       if (this.workflow && r.pk == this.workflow.pk) this.updateMeta();
     });
