@@ -2,12 +2,10 @@
   <div>
     <b-table striped hover :items="items" :fields="fields">
       <template v-slot:cell(actions)="row">
-        <b-button
-          size="sm"
-          @click="deleteRow(row)"
-          class="mr-2"
-          variant="danger"
-        >
+        <b-button size="sm" @click="load(row)" class="mr-2" variant="info">
+          Preview
+        </b-button>
+        <b-button size="sm" @click="deleteRow(row)" variant="danger">
           Delete
         </b-button>
       </template>

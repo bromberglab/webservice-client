@@ -1,4 +1,5 @@
 import Api from "src/services/api";
+import Store from "src/services/store";
 
 export default {
   methods: {
@@ -9,6 +10,10 @@ export default {
           window.location.reload();
         });
       });
+    },
+    load(r) {
+      Store.graphLoadTemplate = "API/" + r.item.uuid;
+      this.$router.push("/editor/");
     }
   },
   mounted() {
