@@ -117,7 +117,9 @@ export default {
       Auth,
       routes,
       lightburger: 0,
-      level: -1
+      level: -1,
+      diskUsage: null,
+      updateAvailable: false
     };
   },
   watch: {
@@ -152,6 +154,10 @@ export default {
       if (response.data === true) {
         this.showCookieInfo = true;
       }
+    });
+    Api.get("server_status").then(r => {
+      this.diskUsage = r.data.disk;
+      this.updateAvailable = r.data.outdated;
     });
 
     Events.$on("enable-overlay", this.enableOverlay);

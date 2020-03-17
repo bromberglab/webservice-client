@@ -73,7 +73,7 @@ input.read-only,
     color: darken($white, 10%);
     font-weight: 700;
   }
-  &:hover {
+  &:not(.info-text):hover {
     color: darken($white, 0%);
   }
 }
@@ -248,4 +248,8 @@ pre.code-display {
   color: white;
   max-height: 50vh;
   overflow-y: auto;
+}
+
+.faint {
+  opacity: 0.4;
 }
