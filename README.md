@@ -1,24 +1,14 @@
-# webservice-client
+# Bio-Node
 
-## Project setup
-```
-yarn install
-```
+## For Documentation, see [this](https://github.com/bromberglab/bio-node-docs) repo.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## For Installation, use [this](https://github.com/bromberglab/bio-node-webserver/blob/master/create-deployment.sh) script.
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Further Links
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Website: https://bio-no.de  
+Runtime Container: https://github.com/bromberglab/bio-node  
+Docs: https://github.com/bromberglab/bio-node-docs  
+Web Client: https://github.com/bromberglab/bio-node-webclient  
+Web Server: https://github.com/bromberglab/bio-node-webserver  
+Filter Containers: https://github.com/bromberglab/bio-node-filters
