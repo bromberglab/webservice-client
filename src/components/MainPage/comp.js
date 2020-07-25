@@ -110,7 +110,7 @@ export default {
       Events.$emit("start-loading");
       setTimeout(() => {
         window.location.reload();
-      }, 60000);
+      }, 90000);
     }
   },
   data() {
