@@ -48,6 +48,14 @@
     >
       Logout
     </a>
+    <a
+      class="nav-link"
+      href="JavaScript:void(0)"
+      @click="reboot();"
+      v-if="Auth.staff && Auth.admin"
+    >
+      {{ updateAvailable ? "Update" : "Reboot" }} Bio-Node
+    </a>
     <div class="border-top my-3 mr-4 faint"></div>
     <div class="nav-link info-text faint" v-if="updateAvailable">
       Update available.

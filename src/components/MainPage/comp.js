@@ -104,6 +104,13 @@ export default {
       if (r.authLevel > this.level) {
         Auth.showLogin();
       }
+    },
+    reboot() {
+      Api.post("reboot_bionode");
+      Events.$emit("start-loading");
+      setTimeout(() => {
+        window.location.reload();
+      }, 60000);
     }
   },
   data() {
