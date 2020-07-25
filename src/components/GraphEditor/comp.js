@@ -235,7 +235,10 @@ export default {
                 for (let k = 0; k < node.data.addOutputs; k++)
                   Sockets.addOutput(++j, node.data.image.add_output, node);
 
-                node.data.displayName = image.name.split("/").slice(-1)[0];
+                node.data.displayName = image.name
+                  .split("/")
+                  .slice(-1)[0]
+                  .replace("bio-node-filter.", "");
 
                 node.data.image.tags = image.tags;
                 node.data.image.imported_tag =
